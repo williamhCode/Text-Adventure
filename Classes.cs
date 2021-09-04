@@ -5,7 +5,7 @@ namespace Text_Adventure
 {
     class Room
     {
-        private string name;
+        public string name;
         private string description;
 
         private Room north;
@@ -13,15 +13,17 @@ namespace Text_Adventure
         private Room west;
         private Room east;
 
-        private string[] objects;
+        private Object[] objects;
 
-        public Room(string name, string description, string[] objects)
+        public Room(){}
+
+        public Room(string name, string description, Object[] objects)
         {
             this.name = name;
             this.description = description;
             this.objects = objects;
         }
-
+        
         public void setConnections(Room north, Room south, Room west, Room east)
         {
             this.north = north;
@@ -29,6 +31,17 @@ namespace Text_Adventure
             this.west = west;
             this.east = east;
         }
+
+        override
+        public string ToString()
+        {
+            return $"{name}\n{description}";
+        }
+    }
+
+    class Office:Room
+    {
+        
     }
 
     class Object
