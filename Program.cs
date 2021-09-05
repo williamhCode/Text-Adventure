@@ -51,7 +51,6 @@ namespace Text_Adventure
 
                 }
             }
-            
         }
     }
 }
