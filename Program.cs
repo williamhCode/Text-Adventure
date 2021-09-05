@@ -33,6 +33,7 @@ namespace Text_Adventure
                 switch(input)
                 {
                     case "look":
+                    case "l":
                     // String output;
                     // if (verbose)
                     //     output = currentRoom;
@@ -43,14 +44,24 @@ namespace Text_Adventure
 
                     case "verbose":
                     verbose = true;
+                    string output = "THE OFFICE is now in its \"verbose\" mode, which always gives long descriptions of locations (even if you've been there before).";
+                    Console.WriteLine(output + "\n");
                     break;
 
                     case "brief":
                     verbose = false;
+                    output = "THE OFFICE is now in its normal \"brief\" printing mode, which gives long descriptions of places never before visited and short descriptions otherwise.";
+                    Console.WriteLine(output + "\n");
+                    break;
+
+                    default:
+                    output = $"I do not recognize \"{(input.IndexOf(" ") > -1 ? input.Substring(0, input.IndexOf(" ")) : input)}\"";
+                    Console.WriteLine(output + "\n");
                     break;
 
                 }
             }
+            // sjdflkasdjfksasfjlds
             
         }
     }
