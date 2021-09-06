@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace Text_Adventure
 {
@@ -8,27 +8,27 @@ namespace Text_Adventure
         public string name;
         private string description;
 
-        private Room north;
-        private Room south;
-        private Room west;
-        private Room east;
+        public Room north;
+        public Room south;
+        public Room west;
+        public Room east;
 
-        private Object[] objects;
+        private List<Object> objects;
 
         public Room(){}
 
-        public Room(string name, string description, Object[] objects)
+        public Room(string name, string description, List<Object> objects)
         {
             this.name = name;
             this.description = description;
             this.objects = objects;
         }
         
-        public void setConnections(Room north, Room south, Room west, Room east)
+        public void SetConnections(Room north, Room west, Room south, Room east)
         {
             this.north = north;
-            this.south = south;
             this.west = west;
+            this.south = south;
             this.east = east;
         }
 
