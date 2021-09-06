@@ -1,0 +1,9 @@
+-Rooms
+Office
+You are surrounded by a multitude of people, each busily walking around or situation in their desk. The space is rather large and looks just like a regular office. There is a door leading to another room in the north and a bathroom on the right.
+break room
+
+janitor's storage
+
+bathroom
+
