@@ -59,30 +59,93 @@ namespace Text_Adventure
             rooms_3[4].SetConnections(null, null, null, rooms_3[3]);
             rooms_3[5].SetConnections(null, rooms_3[0], null, null);
 
-            // logic variables
+            // game logic variables
+            Room currentRoom = rooms_3[0];
+            List<Room> visitedRooms = new List<Room>() { currentRoom };
             bool verbose = true;
 
-            // start game
+            // game functions
+            void EnterRoom(Room room)
+            {
+                bool roomVisited = CheckRoomVisited(room);
+                if (verbose || roomVisited == false)
+                    Console.WriteLine(room + "\n");
+                else
+                    Console.WriteLine(room.name + "\n");
+            }
+
+            bool CheckRoomVisited(Room room)
+            {
+                foreach (Room visitedRoom in visitedRooms)
+                    if (room == visitedRoom)
+                        return true;
+                visitedRooms.Add(room);
+                return false;
+            }
+
+            // start game + game loop
             Console.WriteLine();
             Console.WriteLine(title + "\n");
-
-            Room currentRoom = rooms_3[0];
             Console.WriteLine(currentRoom + "\n");
+
             while (true)
             {
                 Console.Write(">");
-                string input = Console.ReadLine();
+                string input = Console.ReadLine().ToLower();
                 Console.WriteLine();
                 switch (input)
                 {
+                    case "help":
+
+                        break;
+
                     case "look":
                     case "l":
-                        // String output;
-                        // if (verbose)
-                        //     output = currentRoom;
-                        // else
-                        //     output = currentRoom.name;
                         Console.WriteLine(currentRoom + "\n");
+                        break;
+
+                    case "north":
+                    case "n":
+                        if (currentRoom.north == null)
+                            Console.WriteLine("There is nothing in the north.\n");
+                        else
+                        {
+                            currentRoom = currentRoom.north;
+                            EnterRoom(currentRoom);
+                        }
+                        break;
+
+                    case "west":
+                    case "w":
+                        if (currentRoom.west == null)
+                            Console.WriteLine("There is nothing in the west.\n");
+                        else
+                        {
+                            currentRoom = currentRoom.west;
+                            EnterRoom(currentRoom);
+                        }
+                        break;
+
+                    case "south":
+                    case "s":
+                        if (currentRoom.south == null)
+                            Console.WriteLine("There is nothing in the south.\n");
+                        else
+                        {
+                            currentRoom = currentRoom.south;
+                            EnterRoom(currentRoom);
+                        }
+                        break;
+
+                    case "east":
+                    case "e":
+                        if (currentRoom.east == null)
+                            Console.WriteLine("There is nothing in the east.\n");
+                        else
+                        {
+                            currentRoom = currentRoom.east;
+                            EnterRoom(currentRoom);
+                        }
                         break;
 
                     case "verbose":

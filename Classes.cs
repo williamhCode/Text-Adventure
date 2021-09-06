@@ -8,10 +8,10 @@ namespace Text_Adventure
         public string name;
         private string description;
 
-        private Room north;
-        private Room south;
-        private Room west;
-        private Room east;
+        public Room north;
+        public Room south;
+        public Room west;
+        public Room east;
 
         private List<Object> objects;
 
