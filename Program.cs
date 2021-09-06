@@ -24,10 +24,12 @@ namespace Text_Adventure
 
             foreach (string line in lines_3)
             {
-                if (line.Equals(""))
+                if (line.Equals("") || line.Equals("."))
                 {
                     rooms_3.Add(new Room(temp_room_name, temp_room_description, temp_objects));
                     temp_objects = new List<Object>();
+                    if (line.Equals("."))
+                        break;
                 }
                 else if (line.Substring(0, 1) == "-")
                 {
