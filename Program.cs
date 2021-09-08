@@ -79,7 +79,7 @@ namespace Text_Adventure
             rooms_3[5].SetConnections(null, rooms_3[0], null, null);
 
             // game logic variables
-            Room currentRoom = rooms_3[0];
+            Room currentRoom = rooms_2[0];
             List<Room> visitedRooms = new List<Room>() { currentRoom };
             bool verbose = true;
 
@@ -111,8 +111,9 @@ namespace Text_Adventure
             {
                 Console.Write(">");
                 string input = Console.ReadLine().ToLower();
+                string command = input.IndexOf(" ") > -1 ? input.Substring(0, input.IndexOf(" ")) : input;
                 Console.WriteLine();
-                switch (input)
+                switch (command)
                 {
                     case "help":
 
@@ -180,7 +181,7 @@ namespace Text_Adventure
                         break;
 
                     default:
-                        output = $"I do not recognize \"{(input.IndexOf(" ") > -1 ? input.Substring(0, input.IndexOf(" ")) : input)}\"";
+                        output = $"I do not recognize \"{command}\"";
                         Console.WriteLine(output + "\n");
                         break;
 

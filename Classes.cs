@@ -42,6 +42,8 @@ namespace Text_Adventure
         private string name;
         private List<string> descriptions;
 
+        public Delegate method;
+
         public Object(string name, List<string> descriptions)
         {
             this.name = name;
