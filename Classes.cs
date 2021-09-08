@@ -42,8 +42,11 @@ namespace Text_Adventure
         private string name;
         private List<string> descriptions;
 
+<<<<<<< Updated upstream
         public Delegate method;
 
+=======
+>>>>>>> Stashed changes
         public Object(string name, List<string> descriptions)
         {
             this.name = name;
