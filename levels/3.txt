@@ -1,9 +1,19 @@
--Rooms
-Office
-You are surrounded by a multitude of people, each busily walking around or situation in their desk. The space is rather large and looks just like a regular office. There is a door leading to another room in the north and a bathroom on the right.
-break room
+-OFFICE ROOM
+You are surrounded by a multitude of people, each busily walking around or situation in their desk. The entire room is filled with rows and columns of chairs and desks, and looks like a typical office. However, the walls seems to be made from white painted concrete and you see no windows at all.
+*Desk
+In the front of your desk is a 
 
-janitor's storage
+-CONFERENCE ROOM
+The conference has a big desk in the center for conference use. Aside from that, someone who seems to be your boss is sitting at the far end of the room, minding his business.
 
-bathroom
+-BATHROOM
+fds
 
+-BREAK ROOM
+noice
+
+-JANITOR'S STORAGE ROOM
+noice
+
+-LOCKED DOOR
+noice
