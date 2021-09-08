@@ -37,30 +37,15 @@ namespace Text_Adventure
         }
     }
 
-    // class Office:Room
-    // {
-        
-    // }
-
     class Object
     {
         private string name;
-        private string description;
+        private List<string> descriptions;
 
-        public Object(string name, string description)
+        public Object(string name, List<string> descriptions)
         {
             this.name = name;
-            this.description = description;
-        }
-    }
-    
-    class Person:Object
-    {
-        private List<string> dialogue;
-
-        public Person(string name, string description, List<string> dialogue) : base (name, description)
-        {
-            this.dialogue = dialogue;
+            this.descriptions = descriptions;
         }
     }
 }

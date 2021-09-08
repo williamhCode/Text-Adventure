@@ -8,51 +8,65 @@ namespace Text_Adventure
     {
         static void Main(string[] args)
         {
+            List<Room> ReadFloorLevel(string[] file_lines)
+            {
+                List<Room> rooms = new List<Room>();
+
+                bool reading_room = false;
+                int description_length = 0;
+
+                string temp_room_name = null;
+                string temp_room_description = null;
+
+                List<Object> temp_objects = new List<Object>();
+                string temp_object_name = null;
+                List<string> temp_object_descriptions = new List<string>();
+
+                foreach (string line in file_lines)
+                {
+                    if (line.Equals("") || line.Equals("."))
+                    {
+                        rooms.Add(new Room(temp_room_name, temp_room_description, temp_objects));
+                        temp_objects = new List<Object>();
+                        if (line.Equals("."))
+                            break;
+                    }
+                    else if (line.Substring(0, 1) == "-")
+                    {
+                        temp_room_name = line.Substring(1);
+                        reading_room = true;
+                    }
+                    else if (reading_room)
+                    {
+                        temp_room_description = line;
+                        reading_room = false;
+                    }
+                    else if (description_length > 0)
+                    {
+                        description_length -= 1;
+                        temp_object_descriptions.Add(line);
+                        if (description_length == 0)
+                        {
+                            temp_objects.Add(new Object(temp_object_name, temp_object_descriptions));
+                            temp_object_descriptions = new List<string>();
+                        }
+                    }
+                    else if (Int32.TryParse(line.Substring(0, 1), out description_length))
+                    {
+                        temp_object_name = line.Substring(1);
+                    }
+                }
+
+                return rooms;
+            }
+
             string title = File.ReadAllText("levels/title.txt");
+            string[] lines_2 = File.ReadAllLines("levels/2.txt");
             string[] lines_3 = File.ReadAllLines("levels/3.txt");
 
-            bool reading_room = false;
-            bool reading_object = false;
-
-            List<Room> rooms_3 = new List<Room>();
-            string temp_room_name = null;
-            string temp_room_description = null;
-
-            List<Object> temp_objects = new List<Object>();
-            string temp_object_name = null;
-            string temp_object_description = null;
-
-            foreach (string line in lines_3)
-            {
-                if (line.Equals("") || line.Equals("."))
-                {
-                    rooms_3.Add(new Room(temp_room_name, temp_room_description, temp_objects));
-                    temp_objects = new List<Object>();
-                    if (line.Equals("."))
-                        break;
-                }
-                else if (line.Substring(0, 1) == "-")
-                {
-                    temp_room_name = line.Substring(1);
-                    reading_room = true;
-                }
-                else if (line.Substring(0, 1) == "*")
-                {
-                    temp_object_name = line.Substring(1);
-                    reading_object = true;
-                }
-                else if (reading_room)
-                {
-                    temp_room_description = line;
-                    reading_room = false;
-                }
-                else if (reading_object)
-                {
-                    temp_object_description = line;
-                    temp_objects.Add(new Object(temp_object_name, temp_object_description));
-                    reading_object = false;
-                }
-            }
+            List<Room> rooms_2 = ReadFloorLevel(lines_2);
+            List<Room> rooms_3 = ReadFloorLevel(lines_3);
+            
 
             rooms_3[0].SetConnections(rooms_3[1], rooms_3[2], rooms_3[3], rooms_3[5]);
             rooms_3[1].SetConnections(null, null, rooms_3[0], null);
