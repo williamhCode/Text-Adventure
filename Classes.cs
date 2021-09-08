@@ -15,8 +15,6 @@ namespace Text_Adventure
 
         private List<Object> objects;
 
-        public Room(){}
-
         public Room(string name, string description, List<Object> objects)
         {
             this.name = name;
@@ -39,10 +37,10 @@ namespace Text_Adventure
         }
     }
 
-    class Office:Room
-    {
+    // class Office:Room
+    // {
         
-    }
+    // }
 
     class Object
     {
@@ -53,6 +51,16 @@ namespace Text_Adventure
         {
             this.name = name;
             this.description = description;
+        }
+    }
+    
+    class Person:Object
+    {
+        private List<string> dialogue;
+
+        public Person(string name, string description, List<string> dialogue) : base (name, description)
+        {
+            this.dialogue = dialogue;
         }
     }
 }
