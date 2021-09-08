@@ -65,9 +65,12 @@ namespace Text_Adventure
             string[] lines_3 = File.ReadAllLines("levels/3.txt");
 
             List<Room> rooms_2 = ReadFloorLevel(lines_2);
-            List<Room> rooms_3 = ReadFloorLevel(lines_3);
-            
+            rooms_2[0].SetConnections(null, rooms_2[2], rooms_2[3], rooms_2[1]);
+            rooms_2[1].SetConnections(null, rooms_2[0], null, null);
+            rooms_2[2].SetConnections(null, null, null, rooms_2[0]);
+            rooms_2[3].SetConnections(rooms_2[0], null, null, null);
 
+            List<Room> rooms_3 = ReadFloorLevel(lines_3);
             rooms_3[0].SetConnections(rooms_3[1], rooms_3[2], rooms_3[3], rooms_3[5]);
             rooms_3[1].SetConnections(null, null, rooms_3[0], null);
             rooms_3[2].SetConnections(null, null, null, rooms_3[0]);

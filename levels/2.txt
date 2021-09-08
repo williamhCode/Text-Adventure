@@ -9,7 +9,7 @@ As you put the golden ticket into the hatch you here the sound of gears whirring
 You don't have anything that would fit in the hatch.
 
 -RIGHT CORNER
-As you examine the right corner of the room you notice a shady looking guy leaning agisnt the far wall with most of his body covered in a black cloak you also see a small group of people sitting around a table playing some sort of card game.
+As you examine the right corner of the room you notice a shady looking guy leaning against the far wall with most of his body covered in a black cloak you also see a small group of people sitting around a table playing some sort of card game.
 3Gamblers
 As you approach the card players you realize that there gambling as they have a collection of poker chips on the table you can also begin to be able here them over the music "do you have any full houses" "uno" "you fool you've activated my trap card" you have no idea what game there playing. But you also notice one of the gamblers flip a golden coin into the air.
 "You want this little thing" one of the gamblers says "Ok you can have it but I want something first, the music here sucks" "here" one of the other players say as he hands you a USB drive "the music we want is on here, so see if you can find a way to play it"
@@ -32,12 +32,12 @@ as soon as you press the USB to the screen it disapears and a new song starts be
 -VIP ROOM
 As you enter the room the door slams shut behind you and the music from the dance floor suddenly goes quiet, the room you're in looks to be some kind of lounge with some couches a table and more weirdly, no one else besides you seems to be with you. You also notice an elevator on the opposite side of the room from where you enter.
 4Elevator
-as you approach the elevator there is only one button on it that says exit and a spot to put a key
-nothing happens
-the key fits perfectly and as you turn the button lights up yellow
-the button turns green as the elevator stutters and opens
+As you approach the elevator there is only one button on it that says exit and a spot to put a key.
+Nothing happens.
+The key fits perfectly and as you turn the button lights up yellow.
+The button turns green as the elevator stutters and opens.
 1Table
-it's a normal table but you see a note stuck to it
+It's a normal table but you see a note stuck to it
 1Note
 As you pick up the note it seems to be unreadable, but the marking on it begin to change and move. Soon it becomes legible and the note says "If you're reading this you need to leave. Something trapped you in this simulation, and there's a key under the coach. Quickly grab it and get out of here."
 2Couch
