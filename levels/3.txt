@@ -1,6 +1,6 @@
 -OFFICE ROOM
 You are surrounded by a multitude of people, each busily walking around or situation in their desk. The entire room is filled with rows and columns of chairs and desks, and looks like a typical office. However, the walls seems to be made from white painted concrete and you see no windows at all.
-*Desk
+1Desk
 In the front of your desk is a 
 
 -CONFERENCE ROOM
