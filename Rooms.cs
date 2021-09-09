@@ -30,24 +30,15 @@ namespace Text_Adventure
             this.east = east;
         }
 
+        public object getObject(string name)
+        {
+            return objects.Find(obj => obj.name.ToLower() == name);
+        }
+
         override
         public string ToString()
         {
             return $"{name}\n{description}";
-        }
-    }
-
-    class Object
-    {
-        private string name;
-        private List<string> descriptions;
-
-        public Delegate method;
-
-        public Object(string name, List<string> descriptions)
-        {
-            this.name = name;
-            this.descriptions = descriptions;
         }
     }
 }
