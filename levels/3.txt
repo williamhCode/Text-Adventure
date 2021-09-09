@@ -1,36 +1,61 @@
 -OFFICE ROOM
-You are surrounded by a multitude of people, each busily walking around or situation in their desk. The entire room is filled with rows and columns of chairs and desks, and looks like a typical office. However, the walls seems to be made from white painted concrete and you see no windows at all. In your workplace all you have is a desk and a computer. also as you look around you see see a door to a confreance room, a bathroom, a break room, and a door with no sign above it.
+You wake up startled you are surrounded by a multitude of people, each busily walking around or situation in their desk. The entire room is filled with rows and columns of chairs and desks and looks like a typical office. However, the walls seems to be made from white painted concrete and you see no windows at all. In your workplace all you have is a desk and a computer. also, as you look around you see a door to a conference room, a bathroom, a break room, and a door with no sign above it.
 1Desk
 The desk is a perfectly normal plain old desk.
 2Computer
-The Computer is a perfectly normal plain old computer.
-When you turn the computer on all you see is popup that says "boss wants to see you" you cant close it, nothing eles on the computer seems to work.
+The computer is a perfectly normal plain old computer.
+When you turn the computer on all you see is popup that says "boss wants to see you" you can’t close it, nothing else on the computer seems to work.
 2LOCKED DOOR
-As you aproach the door you here the faint sound of gears turning.
-The door doesent budge when you try and move it but there also isnt a keyhole for you to unlock it.
+As you approach the door you here the faint sound of gears turning.
+The door doesn’t budge when you try and move it but there also isn’t a keyhole for you to unlock it.
+as you put the key into the hole you hear a distant beep sound and when you look up the door has opened and revealed an elevator
 
 -CONFERENCE ROOM
 The conference has a big desk in the center for conference use. Aside from that, someone who seems to be your boss is sitting at the far end of the room, minding his business.
 2Boss
-As soon as you glance towards to your boss he notces you "ah hello there thanks you for coming I have a job for you, I can't find my favorite pen I was hoping you could get it for me".
-as you give your boss the pen he takes a good look at it and says "huh that wasent there before well I hope you will ignore that little warning"
+As soon as you glance towards to your boss, he notices you "ah hello their thanks you for coming I have a job for you, I can't find my favorite pen I was hoping you could get it for me".
+As you give your boss the pen, he takes a good look at it and says, "huh that wasn’t there before well I hope you will ignore that little warning anyways thanks you for getting this for me your free to go on break if you want".
+1Desk
+Its a perfectly normal plain old desk.
+
 -BATHROOM
-fds
+As you enter the bathroom you notice four closed stalls along the wall and a mirror.
+1Mirror
+as you look into the mirror it seems normal, but you realize the second stall is open and has button on the wall of the stall which isn’t there when you turn around.
+1Stallone
+There’s nothing in here.
+4Stalltwo
+As you open the stall your vision goes blurry for a second but besides that nothing wierd
+When you press the spot in the wall where the button should be the Stall starts to move and shake as computer forms in the wall, on the computer there is some text that says “This thing devours all things; Birds, beasts, trees, flowers; Gnaws iron, bites steel; grinds hard stones to meal; Slays kings, ruins towns and beats mountains into the ground" under that are text box and a keyboard to put in your answer.
+The screen flashes green and a key materializes in the palm of your hand.
+The screen flashes red as a sad face appears on it :(.
+1StallThree
+There’s nothing in here.
+1StallFour
+There’s nothing in here.
+
 
 -BREAK ROOM
-The break room is a pretty normal break room with a table for eating a refrigator and a cofee maker some of your collegues are also in the room with a small goup of them talking and eating at the table and abother on of your collegues in a yellow shirt  attempting to make coffee.
+The break room is a pretty normal break room with a table for eating a refrigerator and a coffee maker some of your colleagues are also in the room with a small group of them talking and eating at the table and another on of your colleagues in a yellow shirt attempting to make coffee.
 1SmallGroup
-As you aproach the small group they seem to not notic your presence and when you try to get there attention they act as if your not even there. 
-2Yellow Shirt Collegue
-you 
+As you approach the small group, they seem to not notice your presence and when you try to get their attention they act as if you’re not even there. 
+2Yellow Shirt College
+Your colleague seems to be muttering to herself you can’t hear much but you catch her saying “janitors closet pen Bathroom key broken mirror broken pen no windows".
+Your colleague ignores you completely.
+
 -JANITOR'S STORAGE ROOM
-The room is clutterd mess of janitorrial supplies as well as the most random collection of things ever, you dont see the pen but there is a faint glow coming from underneeth one of the boxes.
+The room is cluttered mess of janitorial supplies as well as the most random collection of things ever, you don’t see the pen but there is a faint glow coming from underneath one of the boxes.
 2box
-Its a perfectly normal plain old box.
-As you lift the box you see the source of the light, It turns out your bosses pen just had a small LED light on the end of it.
+It’s a perfectly normal plain old box.
+As you lift the box you see the source of the light, it turns out your bosses pen just had a small LED light on the end of it.
 4Pen
-Its a kinda normal fairly plane pen.
-As you pick up the pen it begins to movee in your hands as you see parts of it distagrat untill a message apears on the pen.
-Its a very weird pen with nothing plain about it.
+It’s a kind of normal fairly plane pen.
+As you pick up the pen it begins to move in your hands as you see parts of it disintegrate until a message appears on the pen.
+It’s a very weird pen with nothing plain about it.
 The message reads "get out".
+
+-Elevator
+as you enter the Elevator it seems to be pretty normal but the buttons to pick floor are missing replaced with a big red exit button
+1Exit
+When you press the button the Elevator door closes and begins to descend but after a few seconds you hear a siren blaring as the lights in the Elevator go out and the exit button you saw before vanishes.
 

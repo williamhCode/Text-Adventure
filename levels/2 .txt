@@ -1,5 +1,5 @@
 -dance_floor
-as the elevator opens begins to slow down you start to hear music and as the elevator doors open your eyes are suddenly assaulted by a wave of neon colors and flashing lights, as you exit the elevator you notice throngs of people dancing and enjoying themselves. this place was definitely not here before. you see a DJ up on stage and two groups of people in the corners of the room, as well as a door with a VIP written in golden letters above it
+as the elevator begins to slow down you start to hear music and as the elevator doors open your eyes are suddenly assaulted by a wave of neon colors and flashing lights, as you exit the elevator you notice throngs of people dancing and enjoying themselves. this place was definitely not here before. you see a DJ up on stage and two groups of people in the corners of the room, as well as a door with a VIP written in golden letters above it
 *DJ
 "what sorry I cant hear you if you want to request a song we have a machine for that over there" The DJ says this as he points towards the left corner
 4vip door
@@ -31,15 +31,20 @@ as soon as you press the USB to the screen it disapears and a new song starts be
 
 -VIP_room
 as you enter the room the door slams shut behind you and the music from the dance floor suddenly goes quiet, the room you’re in looks to be some kind of lounge with some couches a table and more weirdly no one else besides you seems to be with you, you also notice an elevator on the opposite side of the room from where you enter
-4elavator
-as you approach the elevator there is only one button on it that says exit and a spot to put a key
+4ElavatorDoor
+As you approach the elevator there is only one button on it that says exit and a spot to put a key
 nothing happens
 the key fits perfectly and as you turn the button lights up yellow
 the button turns green as the elevator stutters and opens
-*Table
+1Table
 it’s a normal table but you see a note stuck to it
-*Note
+1Note
 as you pick up the note it seems to be unreadable but the marking on it begin to change into move and soon and soon it becomes legible the note says"If your reading this you need to leave something trapped you in this simulation there’s a key under the coach quickly grab it and get out of here"
-2coach
+2couch
 it’s a normal couch
 as you reach under the couch you can feel a metal object as you pull it out it begins to change shape until by the time you can take a good look at it it looks like an ordinary key.
+
+-ElavatorTwo
+As you enter the Elavaotr it looks identicall to the other Elavator you used with the same indentical exit button.
+1Exit Button
+As you press the exit button the Elavator closes and begins again to desencd this time however you here no sirens and before long the Elavator opens up to reveal a lobby.
