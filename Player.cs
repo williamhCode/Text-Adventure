@@ -14,7 +14,7 @@ namespace Text_Adventure
 
         public Object getObject(string name)
         {
-            int index = objects.FindIndex(obj => obj.name.ToLower() == name);
+            int index = objects.FindIndex(obj => obj.name.ToLower().Equals(name.ToLower()));
             Object match = objects[index];
             objects.RemoveAt(index);
             return match;

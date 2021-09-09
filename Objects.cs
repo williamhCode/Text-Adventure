@@ -3,15 +3,14 @@ using System.Collections.Generic;
 
 namespace Text_Adventure
 {
-    delegate void Del(Object obj);
+    delegate string Del(Object obj, string command, bool parameter = false);
 
     class Object
     {
         public string name;
-        private List<string> descriptions;
+        public List<string> descriptions;
 
         private Del method;
-        public bool locked = true;
 
         public Object(string name, List<string> descriptions)
         {
@@ -19,23 +18,50 @@ namespace Text_Adventure
             this.descriptions = descriptions;
         }
 
-        public void setInteractMethod(Del method)
+        public void SetInteractMethod(Del method)
         {
             this.method = method;
         }
 
-        public void callInteractMethod()
+        public string CallInteractMethod(string command, bool parameter = false)
         {
-            this.method(this);
+            return method(this, command, parameter);
         }
     }
 
     class ObjectFunctions
     {
-        public void Called(Object obj)
+        public string DJ(Object obj, string command, bool _)
         {
-            
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            return "You cannot do that.";
+        }
+
+        public string VIPDoor(Object obj, string command, bool locked = false)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            else if (command.Equals("open"))
+            {
+                if (locked)
+                {
+                    Random rnd = new Random();
+                    if (rnd.NextDouble() < 0.5)
+                        return obj.descriptions[1];
+                    else
+                        return obj.descriptions[2];
+                }
+                else
+                {
+                    return obj.descriptions[3];
+                }
+            }
+            return "You cannot do that";
         }
     }
-
 }

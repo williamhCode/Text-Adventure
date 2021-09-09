@@ -3,10 +3,10 @@ As the elevator opens and slows down, you start to hear music, and your eyes are
 1DJ
 "What sorry I cant hear you. If you want to request a song we have a machine for that over there", the DJ says this as he points towards the left corner.
 4Vip Door
-It is a solid looking door with the letters VIP above there also seems to be a letter hatch on the door.
+It is a solid looking door with the letters VIP above. There also seems to be a letter hatch on the door.
 The door doesn't budge.
-As you put the golden ticket into the hatch you hear the sound of gears whirring as the door opens.
 You don't have anything that would fit in the hatch.
+As you put the golden ticket into the hatch you hear the sound of gears whirring as the door opens.
 
 -RIGHT CORNER
 As you examine the right corner of the room you notice a shady looking guy leaning against the far wall with most of his body covered in a black cloak you also see a small group of people sitting around a table playing some sort of card game.
@@ -21,7 +21,7 @@ The mysterious figure notices your approach as a slight smirk begins to form on 
 "Thank you for your patronage my friend" the shady man says as he hands you one of his tickets "Now I should get going, I have a friend of mine who needs help with a zombie problem", the man says as he walks away into the crowd of people dancing and disappear.
 
 -LEFT CORNER
-The left corner if the room seems to be the same as the main floor with groups of people dancing the only other thing you notice is some sort of device in one of the walls
+The left corner of the room seems to be the same as the main floor, with groups of people dancing. The only other thing you notice is some sort of device on one of the walls.
 5Music Wueue
 as you approach the device it shines a bright blue as it turns on and a large enter password appears across the screen as four arrows appear on the screen as well as eight circles   
 the screen flashes red and resets

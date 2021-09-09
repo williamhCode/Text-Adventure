@@ -30,9 +30,9 @@ namespace Text_Adventure
             this.east = east;
         }
 
-        public object getObject(string name)
+        public Object GetObject(string name)
         {
-            return objects.Find(obj => obj.name.ToLower() == name);
+            return objects.Find(x => x.name.ToLower().Equals(name.ToLower()));
         }
 
         override

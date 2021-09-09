@@ -70,6 +70,10 @@ namespace Text_Adventure
             rooms_2[2].SetConnections(null, null, null, rooms_2[0]);
             rooms_2[3].SetConnections(null, null, rooms_2[0], null);
 
+            ObjectFunctions OF = new ObjectFunctions();
+            rooms_2[0].GetObject("DJ").SetInteractMethod(OF.DJ);
+            rooms_2[0].GetObject("VIP Door").SetInteractMethod(OF.VIPDoor);
+
             List<Room> rooms_3 = ReadFloorLevel(lines_3);
             rooms_3[0].SetConnections(rooms_3[1], rooms_3[2], rooms_3[3], rooms_3[5]);
             rooms_3[1].SetConnections(null, null, rooms_3[0], null);
@@ -110,13 +114,15 @@ namespace Text_Adventure
             while (true)
             {
                 Console.Write(">");
-                string input = Console.ReadLine().ToLower();
+                string input = Console.ReadLine().ToLower().Trim();
                 string command = input.IndexOf(" ") > -1 ? input.Substring(0, input.IndexOf(" ")) : input;
-                Console.WriteLine();
-                switch (command)
-                {
-                    case "help":
+                string rest = input.IndexOf(" ") > -1 ? input.Substring(input.IndexOf(" ") + 1) : "";
 
+                Console.WriteLine();
+                string output;
+                switch (command)
+                {   
+                    case "help":
                         break;
 
                     case "look":
@@ -168,9 +174,48 @@ namespace Text_Adventure
                         }
                         break;
 
+                    case "examine":
+                    case "x":
+                        if (rest.Equals(""))
+                        {
+                            Console.WriteLine("What to examine?\n");
+                        }
+                        else
+                        {
+                            try
+                            {
+                                output = currentRoom.GetObject(rest).CallInteractMethod("examine");
+                                Console.WriteLine(output + "\n");
+                            }
+                            catch (NullReferenceException e)
+                            {
+                                Console.WriteLine("There's no such thing.\n");
+                            }    
+                        }
+                        break;
+
+                    case "open":
+                        if (rest.Equals(""))
+                        {
+                            Console.WriteLine("What to open?\n");
+                        }
+                        else
+                        {
+                            try
+                            {
+                                output = currentRoom.GetObject(rest).CallInteractMethod("open", true);
+                                Console.WriteLine(output + "\n");
+                            }
+                            catch (NullReferenceException e)
+                            {
+                                Console.WriteLine("I cannot open that.\n");
+                            }    
+                        }
+                        break;
+
                     case "verbose":
                         verbose = true;
-                        string output = "THE OFFICE is now in its \"verbose\" mode, which always gives long descriptions of locations (even if you've been there before).";
+                        output = "THE OFFICE is now in its \"verbose\" mode, which always gives long descriptions of locations (even if you've been there before).";
                         Console.WriteLine(output + "\n");
                         break;
 
@@ -181,7 +226,7 @@ namespace Text_Adventure
                         break;
 
                     default:
-                        output = $"I do not recognize \"{command}\"";
+                        output = $"\"{command}\" is not a command.";
                         Console.WriteLine(output + "\n");
                         break;
 
