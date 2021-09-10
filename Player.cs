@@ -12,7 +12,7 @@ namespace Text_Adventure
             this.objects = objects;
         }
 
-        public Object getObject(string name)
+        public Object GetObject(string name)
         {
             int index = objects.FindIndex(obj => obj.name.ToLower().Equals(name.ToLower()));
             Object match = objects[index];
@@ -20,7 +20,7 @@ namespace Text_Adventure
             return match;
         }
 
-        public void addObject(Object obj)
+        public void AddObject(Object obj)
         {
             objects.Add(obj);
         }
