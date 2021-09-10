@@ -40,7 +40,7 @@ namespace Text_Adventure
             return "You cannot do that.";
         }
 
-        public string VIPDoor(Object obj, string command, bool locked = false)
+        public string VIPDoor(Object obj, string command, bool locked)
         {
             if (command.Equals("examine"))
             {
@@ -61,6 +61,32 @@ namespace Text_Adventure
                     return obj.descriptions[3];
                 }
             }
+            return "You cannot do that";
+        }
+
+        public string MusicQueue(Object obj, string command, bool _)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            else if(command.Equals("use"))
+            {
+                return obj.descriptions[1];
+            }
+            else if(command.Equals("incorrect"))
+            {
+                return obj.descriptions[2];
+            }
+            else if(command.Equals("correct"))
+            {
+                return obj.descriptions[3];
+            }
+            else if(command.Equals("unlocked"))
+            {
+                return obj.descriptions[4];
+            }
+
             return "You cannot do that";
         }
     }

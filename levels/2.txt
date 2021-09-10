@@ -11,26 +11,27 @@ As you put the golden ticket into the hatch you hear the sound of gears whirring
 -RIGHT CORNER
 As you examine the right corner of the room you notice a shady looking guy leaning against the far wall with most of his body covered in a black cloak you also see a small group of people sitting around a table playing some sort of card game.
 3Gamblers
-As you approach the card players you realize that there gambling as they have a collection of poker chips on the table you can also begin to be able here them over the music "do you have any full houses" "uno" "you fool you've activated my trap card" you have no idea what game there playing. But you also notice one of the gamblers flip a golden coin into the air.
-"You want this little thing" one of the gamblers says "Ok you can have it but I want something first, the music here sucks" "here" one of the other players say as he hands you a USB drive "the music we want is on here, so see if you can find a way to play it"
-"You really kept us waiting huh?" the gambler says with a smirk. "Well a deals a deal heres one golden coin for you", the gambler with the coin flips it one more time as you see it glitch, vanish and suddenly appear in your hand.
+As you approach the card players, you realize that they are gambling. They have a collection of poker chips on the table. You can also begin to hear them over the music: "do you have any full houses" "uno" "you fool you've activated my trap card". You have no idea what game there playing. But you also notice one of the gamblers flip a golden coin into the air.
+"You want this little coin thing, huh?", one of the gamblers says, "Ok you can have it but I want something first. The music here sucks." "Here", one of the other players says as he hands you a USB drive, "the music we want is on here, so see if you can find a way to play it".
+"You really kept us waiting huh?" the gambler says with a smirk. "Well a deal's a deal. Here's one golden coin for you". The gambler with the coin flips it one more time as you see it glitch, vanish and suddenly appear in your hand.
 1Golden Coin
 A single golden coin roughly the size of a poker chip. The coin occasionally flashes purple and white as it glitches out. Hopefully that shady guy wont care.
 2Shady Guy
-The mysterious figure notices your approach as a slight smirk begins to form on his face "why it's my favorite customer what do you wish to buy today" the man open up his cloak to reveal a collection of VIP tickets "one golden ticket one golden coin you know the rules"
-"Thank you for your patronage my friend" the shady man says as he hands you one of his tickets "Now I should get going, I have a friend of mine who needs help with a zombie problem", the man says as he walks away into the crowd of people dancing and disappear.
+The mysterious figure notices your approach as a slight smirk begins to form on his face, "Why, it's my favorite customer. What do you wish to buy today?" The man open up his cloak to reveal a collection of VIP tickets, "One golden ticket one golden coin. You know the rules."
+"Thank you for your patronage my friend", the shady man says as he hands you one of his tickets, "Now I should get going, I have a friend of mine who needs help with a zombie problem", the man says as he disappear into the crowd of dancing people.
 
 -LEFT CORNER
-The left corner of the room seems to be the same as the main floor, with groups of people dancing. The only other thing you notice is a music queue device on one of the walls.
+The left corner of the room seems to be the same as the main floor, with groups of people dancing. The only other thing you notice is a music queue device on the wall.
 5Music Queue
-As you approach the device it shines a bright blue. As it turns on, a large password area appears across the screen as four arrows appear on the screen as well as eight circles.
+As you approach the device, it shines a bright blue. It turns on, and four directional arrows appear on the screen as well as eight circles shining red.
+Which arrow do you want to press (up/down/left/right).
 The screen flashes red and resets.
-The screen flashes green as one of the circles turn green.
+One of the eight cicles shine green.
 The screen flashes green as the picture of a USB port appears on the screen.
 As soon as you put the USB in the screen, it disapears and a new song starts being played.
 
 -VIP ROOM
-As you enter the room the door slams shut behind you and the music from the dance floor suddenly goes quiet, the room you're in looks to be some kind of lounge with some couches a table and more weirdly, no one else besides you seems to be with you. You also notice an elevator on the opposite side of the room from where you enter.
+As you enter the room, the door slams shut behind you and the music from the dance floor suddenly goes quiet, the room you're in looks to be some kind of lounge with some couches a table and more weirdly, no one else besides you seems to be with you. You also notice an elevator on the opposite side of the room from where you enter.
 4Elevator
 As you approach the elevator there is only one button on it that says exit and a spot to put a key.
 Nothing happens.

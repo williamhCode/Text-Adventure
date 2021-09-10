@@ -35,6 +35,11 @@ namespace Text_Adventure
             return objects.Find(x => x.name.ToLower().Equals(name.ToLower()));
         }
 
+        public void RemoveObject(string name)
+        {
+            objects.Remove(GetObject(name));
+        }
+
         override
         public string ToString()
         {

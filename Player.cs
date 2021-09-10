@@ -14,10 +14,12 @@ namespace Text_Adventure
 
         public Object GetObject(string name)
         {
-            int index = objects.FindIndex(obj => obj.name.ToLower().Equals(name.ToLower()));
-            Object match = objects[index];
-            objects.RemoveAt(index);
-            return match;
+            return objects.Find(x => x.name.ToLower().Equals(name.ToLower()));
+        }
+
+        public void RemoveObject(string name)
+        {
+            objects.Remove(GetObject(name));
         }
 
         public void AddObject(Object obj)
