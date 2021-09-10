@@ -8,50 +8,73 @@ namespace Text_Adventure
     {
         static void Main(string[] args)
         {
-            string title = File.ReadAllText("levels/title.txt");
-            string[] lines_3 = File.ReadAllLines("levels/3.txt");
-
-            bool reading_room = false;
-            bool reading_object = false;
-
-            List<Room> rooms_3 = new List<Room>();
-            string temp_room_name = null;
-            string temp_room_description = null;
-
-            List<Object> temp_objects = new List<Object>();
-            string temp_object_name = null;
-            string temp_object_description = null;
-
-            foreach (string line in lines_3)
+            List<Room> ReadFloorLevel(string[] file_lines)
             {
-                if (line.Equals(""))
+                List<Room> rooms = new List<Room>();
+
+                bool reading_room = false;
+                int description_length = 0;
+
+                string temp_room_name = null;
+                string temp_room_description = null;
+
+                List<Object> temp_objects = new List<Object>();
+                string temp_object_name = null;
+                List<string> temp_object_descriptions = new List<string>();
+
+                foreach (string line in file_lines)
                 {
-                    rooms_3.Add(new Room(temp_room_name, temp_room_description, temp_objects));
-                    temp_objects = new List<Object>();
+                    if (line.Equals("") || line.Equals("."))
+                    {
+                        rooms.Add(new Room(temp_room_name, temp_room_description, temp_objects));
+                        temp_objects = new List<Object>();
+                        if (line.Equals("."))
+                            break;
+                    }
+                    else if (line.Substring(0, 1) == "-")
+                    {
+                        temp_room_name = line.Substring(1);
+                        reading_room = true;
+                    }
+                    else if (reading_room)
+                    {
+                        temp_room_description = line;
+                        reading_room = false;
+                    }
+                    else if (description_length > 0)
+                    {
+                        description_length -= 1;
+                        temp_object_descriptions.Add(line);
+                        if (description_length == 0)
+                        {
+                            temp_objects.Add(new Object(temp_object_name, temp_object_descriptions));
+                            temp_object_descriptions = new List<string>();
+                        }
+                    }
+                    else if (Int32.TryParse(line.Substring(0, 1), out description_length))
+                    {
+                        temp_object_name = line.Substring(1);
+                    }
                 }
-                else if (line.Substring(0, 1) == "-")
-                {
-                    temp_room_name = line.Substring(1);
-                    reading_room = true;
-                }
-                else if (line.Substring(0, 1) == "*")
-                {
-                    temp_object_name = line.Substring(1);
-                    reading_object = true;
-                }
-                else if (reading_room)
-                {
-                    temp_room_description = line;
-                    reading_room = false;
-                }
-                else if (reading_object)
-                {
-                    temp_object_description = line;
-                    temp_objects.Add(new Object(temp_object_name, temp_object_description));
-                    reading_object = false;
-                }
+
+                return rooms;
             }
 
+            string title = File.ReadAllText("levels/title.txt");
+            string[] lines_2 = File.ReadAllLines("levels/2.txt");
+            string[] lines_3 = File.ReadAllLines("levels/3.txt");
+
+            List<Room> rooms_2 = ReadFloorLevel(lines_2);
+            rooms_2[0].SetConnections(rooms_2[3], rooms_2[2], null, rooms_2[1]);
+            rooms_2[1].SetConnections(null, rooms_2[0], null, null);
+            rooms_2[2].SetConnections(null, null, null, rooms_2[0]);
+            rooms_2[3].SetConnections(null, null, rooms_2[0], null);
+
+            ObjectFunctions OF = new ObjectFunctions();
+            rooms_2[0].GetObject("DJ").SetInteractMethod(OF.DJ);
+            rooms_2[0].GetObject("VIP Door").SetInteractMethod(OF.VIPDoor);
+
+            List<Room> rooms_3 = ReadFloorLevel(lines_3);
             rooms_3[0].SetConnections(rooms_3[1], rooms_3[2], rooms_3[3], rooms_3[5]);
             rooms_3[1].SetConnections(null, null, rooms_3[0], null);
             rooms_3[2].SetConnections(null, null, null, rooms_3[0]);
@@ -60,7 +83,7 @@ namespace Text_Adventure
             rooms_3[5].SetConnections(null, rooms_3[0], null, null);
 
             // game logic variables
-            Room currentRoom = rooms_3[0];
+            Room currentRoom = rooms_2[0];
             List<Room> visitedRooms = new List<Room>() { currentRoom };
             bool verbose = true;
 
@@ -91,12 +114,15 @@ namespace Text_Adventure
             while (true)
             {
                 Console.Write(">");
-                string input = Console.ReadLine().ToLower();
-                Console.WriteLine();
-                switch (input)
-                {
-                    case "help":
+                string input = Console.ReadLine().ToLower().Trim();
+                string command = input.IndexOf(" ") > -1 ? input.Substring(0, input.IndexOf(" ")) : input;
+                string rest = input.IndexOf(" ") > -1 ? input.Substring(input.IndexOf(" ") + 1) : "";
 
+                Console.WriteLine();
+                string output;
+                switch (command)
+                {   
+                    case "help":
                         break;
 
                     case "look":
@@ -148,9 +174,48 @@ namespace Text_Adventure
                         }
                         break;
 
+                    case "examine":
+                    case "x":
+                        if (rest.Equals(""))
+                        {
+                            Console.WriteLine("What to examine?\n");
+                        }
+                        else
+                        {
+                            try
+                            {
+                                output = currentRoom.GetObject(rest).CallInteractMethod("examine");
+                                Console.WriteLine(output + "\n");
+                            }
+                            catch (NullReferenceException e)
+                            {
+                                Console.WriteLine("There's no such thing.\n");
+                            }    
+                        }
+                        break;
+
+                    case "open":
+                        if (rest.Equals(""))
+                        {
+                            Console.WriteLine("What to open?\n");
+                        }
+                        else
+                        {
+                            try
+                            {
+                                output = currentRoom.GetObject(rest).CallInteractMethod("open", true);
+                                Console.WriteLine(output + "\n");
+                            }
+                            catch (NullReferenceException e)
+                            {
+                                Console.WriteLine("I cannot open that.\n");
+                            }    
+                        }
+                        break;
+
                     case "verbose":
                         verbose = true;
-                        string output = "THE OFFICE is now in its \"verbose\" mode, which always gives long descriptions of locations (even if you've been there before).";
+                        output = "THE OFFICE is now in its \"verbose\" mode, which always gives long descriptions of locations (even if you've been there before).";
                         Console.WriteLine(output + "\n");
                         break;
 
@@ -161,7 +226,7 @@ namespace Text_Adventure
                         break;
 
                     default:
-                        output = $"I do not recognize \"{(input.IndexOf(" ") > -1 ? input.Substring(0, input.IndexOf(" ")) : input)}\"";
+                        output = $"\"{command}\" is not a command.";
                         Console.WriteLine(output + "\n");
                         break;
 

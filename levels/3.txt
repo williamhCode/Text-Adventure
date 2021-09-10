@@ -58,4 +58,3 @@ The message reads "get out".
 as you enter the Elevator it seems to be pretty normal but the buttons to pick floor are missing replaced with a big red exit button
 1Exit
 When you press the button the Elevator door closes and begins to descend but after a few seconds you hear a siren blaring as the lights in the Elevator go out and the exit button you saw before vanishes.
-

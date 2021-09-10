@@ -15,8 +15,6 @@ namespace Text_Adventure
 
         private List<Object> objects;
 
-        public Room(){}
-
         public Room(string name, string description, List<Object> objects)
         {
             this.name = name;
@@ -32,27 +30,15 @@ namespace Text_Adventure
             this.east = east;
         }
 
+        public Object GetObject(string name)
+        {
+            return objects.Find(x => x.name.ToLower().Equals(name.ToLower()));
+        }
+
         override
         public string ToString()
         {
             return $"{name}\n{description}";
-        }
-    }
-
-    class Office:Room
-    {
-        
-    }
-
-    class Object
-    {
-        private string name;
-        private string description;
-
-        public Object(string name, string description)
-        {
-            this.name = name;
-            this.description = description;
         }
     }
 }
