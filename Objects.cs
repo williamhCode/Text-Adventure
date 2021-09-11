@@ -235,6 +235,7 @@ namespace Text_Adventure
             }
             if (comand.Equals("use"))
             {
+                pen = true;
                 change = true;
                 return obj.description[1];
             }
@@ -286,6 +287,52 @@ namespace Text_Adventure
             }
             return "you can't do that";
 
+        }
+        public string table(object obj,string comand)
+        {
+            if (comand.Equals("examine"))
+            {
+                return obj.description[0];
+            }
+            return "you can't do that";
+        }
+        public string couch(object obj, string comand)
+        {
+            if (comand.Equals("examine"))
+            {
+                return obj.description[0];
+            }
+            if (comand.Equals("use"))
+            {
+                key = true;
+                return obj.description[1];
+            }
+            return "you can't do that";
+        }
+        public string note(object obj,string comand)
+        {
+            if (comand.Equals("examine"))
+            {
+                return obj.description[0];
+            }
+            return "you can't do that"
+        }
+        public string elavator(object obj, string comand)
+        {
+            if (comand.Equals("examine"))
+            {
+                return obj.description[0];
+            }
+            if (comand.Equals("use") && key == false)
+            {
+                return obj.descriptions[1];
+
+            }
+            if (comand.Equals("use") && key = true)
+            {
+                return obj.descriptions[2];
+            }
+            return "you can't do that";
         }
 
 
