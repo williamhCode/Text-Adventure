@@ -61,7 +61,109 @@ namespace Text_Adventure
                     return obj.descriptions[3];
                 }
             }
+            
+
             return "You cannot do that";
+        }
+        public string Desk(Object obj, string comand)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0]
+            }
+            return "you cannot do that";
+        }
+        public string Computer(Object obj, string comand)
+        {
+            if (comand.Equals("examine")
+            {
+                return obj.descriptions[0]
+            }
+            else if (comand.Equals("use"))
+            {
+                return obj.descriptions[1]
+            }
+            return "you cannot do that";
+
+
+        }
+        public string LockedDoor(Object obj, string comand, bool locked = true)
+        {
+            if (comand.Equals("examine"))
+            {
+                return obj.descriptions[0]
+            }
+            else if (comand.Equals("use") && locked == true)
+            {
+                return obj descriptions[1];
+
+            }
+            else if (comand.Equals("use") && lockes == false)
+            {
+                return obj.descriptions[2]
+            }
+            return "you cannot do that";
+
+        }
+        public string boss(Object obj, string comand,bool havePen=false)
+        {
+            if (comand.Equals("examine") && havePen == false)
+            {
+                return obj.descriptions[0]
+            }
+            if (comand.Equals("examine") && havePen == true)
+            {
+                return obj.descriptions[1]
+            }
+            return "you cannot do that";
+
+        }
+        public string Mirror(object obj, string comand)
+        {
+            if (comand.Equals("examine"))
+            {
+                return obj.descriptions[0]
+            }
+            return "you cannot do that";
+
+        }
+        public string StallOne(object obj,string comand)
+        {
+            if (comand.Equals("examine"))
+            {
+                return obj.descriptions[0]
+            }
+            return "you cannot do that";
+
+
+        }
+        public string StallTwo(object obj, string comand)
+        {
+            if (comand.Equals("examine"))
+            {
+                return obj.descriptions[0]
+
+            }
+            return "you cannot do that";
+
+        }
+        public string StallThree(object obj, string comand)
+        {
+            if (comand.Equals("examine"))
+            {
+                return obj.descriptions[0]
+            }
+            return "you cannot do that";
+
+        }
+        public string StallFour(object obj, string comand)
+        {
+            if (comand.Equals("examine"))
+            {
+                return obj.descriptions[0]
+            }
+            return "you cannot do that";
+
         }
     }
 }
