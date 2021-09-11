@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Text_Adventure
 {
-    delegate string Del(Object obj, string command, bool parameter = false);
+    delegate string Del(Object obj, string command, int parameter = 0);
 
     class Object
     {
@@ -23,7 +23,7 @@ namespace Text_Adventure
             this.method = method;
         }
 
-        public string CallInteractMethod(string command, bool parameter = false)
+        public string CallInteractMethod(string command, int parameter = 0)
         {
             return method(this, command, parameter);
         }
@@ -31,7 +31,7 @@ namespace Text_Adventure
 
     class ObjectFunctions
     {
-        public string DJ(Object obj, string command, bool _)
+        public string DJ(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {
@@ -40,7 +40,7 @@ namespace Text_Adventure
             return "You cannot do that.";
         }
 
-        public string VIPDoor(Object obj, string command, bool locked)
+        public string VIPDoor(Object obj, string command, int locked)
         {
             if (command.Equals("examine"))
             {
@@ -48,7 +48,7 @@ namespace Text_Adventure
             }
             else if (command.Equals("open"))
             {
-                if (locked)
+                if (locked == 1)
                 {
                     Random rnd = new Random();
                     if (rnd.NextDouble() < 0.5)
@@ -61,10 +61,31 @@ namespace Text_Adventure
                     return obj.descriptions[3];
                 }
             }
-            return "You cannot do that";
+            return "You cannot do that.";
         }
 
-        public string MusicQueue(Object obj, string command, bool _)
+        public string Gamblers(Object obj, string command, int stage)
+        {
+            if (command.Equals("examine"))
+            {
+                if (stage == 0)
+                {
+                    return obj.descriptions[0];
+                }
+                else if (stage == 1)
+                {
+                    return obj.descriptions[1];
+                }
+                else if (stage == 2)
+                {
+                    return obj.descriptions[2];
+                }
+                
+            }
+            return "You cannot do that.";
+        }
+
+        public string MusicQueue(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {
@@ -87,7 +108,7 @@ namespace Text_Adventure
                 return obj.descriptions[4];
             }
 
-            return "You cannot do that";
+            return "You cannot do that.";
         }
     }
 }

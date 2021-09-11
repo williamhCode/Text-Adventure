@@ -9,11 +9,13 @@ You don't have anything that would fit in the hatch.
 As you put the golden ticket into the hatch you hear the sound of gears whirring as the door opens.
 
 -RIGHT CORNER
-As you examine the right corner of the room you notice a shady looking guy leaning against the far wall with most of his body covered in a black cloak you also see a small group of people sitting around a table playing some sort of card game.
+As you examine the right corner of the room you notice a shady looking guy leaning against the far wall with most of his body covered in a black cloak. You also see a small group of gamblers sitting around a table playing some sort of card game.
 3Gamblers
 As you approach the card players, you realize that they are gambling. They have a collection of poker chips on the table. You can also begin to hear them over the music: "do you have any full houses" "uno" "you fool you've activated my trap card". You have no idea what game there playing. But you also notice one of the gamblers flip a golden coin into the air.
-"You want this little coin thing, huh?", one of the gamblers says, "Ok you can have it but I want something first. The music here sucks." "Here", one of the other players says as he hands you a USB drive, "the music we want is on here, so see if you can find a way to play it".
+"You want this little coin thing, huh?", one of the gamblers says, "Ok you can have it but I want something first. The music here sucks." "Here", one of the other players says as he hands you a USB drive, "The music we want is on here, so see if you can find a way to play it".
 "You really kept us waiting huh?" the gambler says with a smirk. "Well a deal's a deal. Here's one golden coin for you". The gambler with the coin flips it one more time as you see it glitch, vanish and suddenly appear in your hand.
+1USB drive
+This USB drive is painted black, has a dice pattern carved on its side.
 1Golden Coin
 A single golden coin roughly the size of a poker chip. The coin occasionally flashes purple and white as it glitches out. Hopefully that shady guy wont care.
 2Shady Guy

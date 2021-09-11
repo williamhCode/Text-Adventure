@@ -17,14 +17,27 @@ namespace Text_Adventure
             return objects.Find(x => x.name.ToLower().Equals(name.ToLower()));
         }
 
-        public void RemoveObject(string name)
+        public Object RemoveObject(string name)
         {
-            objects.Remove(GetObject(name));
+            Object obj = GetObject(name);
+            objects.Remove(obj);
+            return obj;
         }
 
         public void AddObject(Object obj)
         {
             objects.Add(obj);
+        }
+
+        override
+        public string ToString()
+        {
+            string output = "Items: ";
+            foreach (Object obj in objects)
+            {
+                output += obj.name + ", ";
+            }
+            return output.Substring(0, output.Length - 2);
         }
     }
 }

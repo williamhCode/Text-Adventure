@@ -75,6 +75,8 @@ namespace Text_Adventure
             rooms_2[0].GetObject("DJ").SetInteractMethod(OF.DJ);
             rooms_2[0].GetObject("VIP Door").SetInteractMethod(OF.VIPDoor);
 
+            rooms_2[1].GetObject("Gamblers").SetInteractMethod(OF.Gamblers);
+
             rooms_2[2].GetObject("Music Queue").SetInteractMethod(OF.MusicQueue);
 
             List<Room> rooms_3 = ReadFloorLevel(lines_3);
@@ -86,14 +88,21 @@ namespace Text_Adventure
             rooms_3[5].SetConnections(null, rooms_3[0], null, null);
 
             // game logic variables
+            Player inventory = new Player(new List<Object>());
+
             Room currentRoom = rooms_2[0];
             List<Room> visitedRooms = new List<Room>() { currentRoom };
+
             bool verbose = true;
+
+            int gamblersStage = 0;
+            bool USBgiven = false;
             
             // 0 = up, 1 = down, 2 = left, 3 = right
             int[] musicQueueCode = {0, 0, 1, 1, 2, 3, 2, 3}; 
             int musicQueueIndex = 0;
             bool usingMusicQueue = false;
+            bool USBUnlocked = false;
 
             // game functions
             void EnterRoom(Room room)
@@ -127,6 +136,7 @@ namespace Text_Adventure
                 string rest = input.IndexOf(" ") > -1 ? input.Substring(input.IndexOf(" ") + 1) : "";
 
                 Console.WriteLine();
+                int parameter = 0;
                 string output;
                 
                 if (usingMusicQueue)
@@ -156,7 +166,6 @@ namespace Text_Adventure
                         default:
                             invalidAnswer = true;
                             break;
-
                     }
 
                     if (invalidAnswer)
@@ -177,6 +186,7 @@ namespace Text_Adventure
                             output = currentRoom.GetObject("Music Queue").CallInteractMethod("unlocked");
                             Console.WriteLine(output + "\n");
                             usingMusicQueue = false;
+                            USBUnlocked = true;
                         }
                         musicQueueIndex += 1;
                     }
@@ -244,6 +254,27 @@ namespace Text_Adventure
                             }
                             break;
 
+                        case "inventory":
+                        case "inv":
+                            if (rest.Equals(""))
+                            {
+                                Console.WriteLine(inventory + "\n");
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    output = inventory.GetObject(rest).CallInteractMethod("examine");
+                                    Console.WriteLine(output + "\n");
+                                }
+                                catch (NullReferenceException e)
+                                {
+                                    Console.WriteLine("There's no such thing.\n");
+                                }    
+                            }
+                            
+                            break;
+
                         case "examine":
                         case "x":
                             if (rest.Equals(""))
@@ -251,10 +282,26 @@ namespace Text_Adventure
                                 Console.WriteLine("What to examine?\n");
                             }
                             else
-                            {
+                            {   
+                                if (rest.Equals("gamblers"))
+                                {
+                                    parameter = gamblersStage;
+                                    if (USBgiven == false)
+                                    {
+                                        if (gamblersStage == 0)
+                                        {
+                                            gamblersStage = 1;
+                                        }
+                                        else if (gamblersStage == 1)
+                                        {  
+                                            USBgiven = true;
+                                            inventory.AddObject(currentRoom.RemoveObject("USB drive"));
+                                        }
+                                    }
+                                }
                                 try
                                 {
-                                    output = currentRoom.GetObject(rest).CallInteractMethod("examine");
+                                    output = currentRoom.GetObject(rest).CallInteractMethod("examine", parameter);
                                     Console.WriteLine(output + "\n");
                                 }
                                 catch (NullReferenceException e)
@@ -273,7 +320,7 @@ namespace Text_Adventure
                             {
                                 try
                                 {
-                                    output = currentRoom.GetObject(rest).CallInteractMethod("open", true);
+                                    output = currentRoom.GetObject(rest).CallInteractMethod("open");
                                     Console.WriteLine(output + "\n");
                                 }
                                 catch (NullReferenceException e)
@@ -290,14 +337,13 @@ namespace Text_Adventure
                             }
                             else
                             {
+                                if (rest.Equals("music queue"))
+                                {
+                                    usingMusicQueue = true;
+                                }
                                 try
                                 {
-                                    if (rest.Equals("music queue"))
-                                    {
-                                        usingMusicQueue = true;
-                                    }
-
-                                    output = currentRoom.GetObject(rest).CallInteractMethod("use", true);
+                                    output = currentRoom.GetObject(rest).CallInteractMethod("use");
                                     Console.WriteLine(output + "\n");
                                 }
                                 catch (NullReferenceException e)
