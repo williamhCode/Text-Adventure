@@ -30,6 +30,14 @@ namespace Text_Adventure
             this.east = east;
         }
 
+        public string getObjectName(string name)
+        {
+            Object obj = objects.Find(x => x.name.ToLower().Contains(name.ToLower()));
+            if (obj == null)
+                return "";
+            return obj.name;
+        }
+
         public Object GetObject(string name)
         {
             return objects.Find(x => x.name.ToLower().Equals(name.ToLower()));

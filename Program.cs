@@ -83,6 +83,7 @@ namespace Text_Adventure
             rooms_2[0].GetObject("DJ").SetInteractMethod(OF.DJ);
             rooms_2[0].GetObject("VIP Door").SetInteractMethod(OF.VIPDoor);
             rooms_2[1].GetObject("Gamblers").SetInteractMethod(OF.Gamblers);
+            rooms_2[1].GetObject("USB Drive").SetInteractMethod(OF.USBDrive);
             rooms_2[2].GetObject("Music Queue").SetInteractMethod(OF.MusicQueue);
 
             // game logic variables
@@ -95,12 +96,12 @@ namespace Text_Adventure
 
             int gamblersStage = 0;
             bool USBgiven = false;
-            
+
             // 0 = up, 1 = down, 2 = left, 3 = right
-            int[] musicQueueCode = {0, 0, 1, 1, 2, 3, 2, 3}; 
+            int[] musicQueueCode = { 0, 0, 1, 1, 2, 3, 2, 3 };
             int musicQueueIndex = 0;
             bool usingMusicQueue = false;
-            bool USBUnlocked = false;
+            bool musicQueueUnlocked = false;
 
             // game functions
             void EnterRoom(Room room)
@@ -121,6 +122,71 @@ namespace Text_Adventure
                 return false;
             }
 
+            Dictionary<string, string> commandDict = new Dictionary<string, string>
+            {
+                {"look", "look"},
+                {"l", "look"},
+                {"go", "go"},
+                {"move", "go"},
+                {"walk", "go"},
+                {"examine", "examine"},
+                {"x", "examine"},
+                {"look at", "examine"},
+                {"inspect", "examine"},
+                {"see", "examine"},
+                {"open", "open"},
+                {"push", "open"},
+                {"use", "use"},
+                {"put", "use"},
+            };
+
+            Dictionary<string, string> directionDict = new Dictionary<string, string>
+            {
+                {"north","north"},
+                {"n", "north"},
+                {"foward", "north"},
+                {"fowards", "north"},
+                {"west","west"},
+                {"w", "west"},
+                {"left", "west"},
+                {"south","south"},
+                {"s", "south"},
+                {"backward", "south"},
+                {"backwards", "south"},
+                {"east","east"},
+                {"e", "east"},
+                {"right", "east"},
+            };
+
+            (string command, string objectName) ParseInput(string input)
+            {
+                string command = "", objectName = "";
+                char[] seperators = new char[] {' ', ',', '.' };
+                string[] words = input.Split(seperators, StringSplitOptions.RemoveEmptyEntries);
+                int input_length = words.Length;
+                
+                int index = 0;
+                if (commandDict.TryGetValue(words[index], out command) == false)
+                {
+                    if (++index > input_length - 1)
+                    {
+                        return ("", "");
+                    }
+                    commandDict.TryGetValue(words[0] + " " + words[1], out command);
+                }
+                index++;
+                if (command.Equals("go"))
+                {
+                    if(directionDict.TryGetValue(words[index], out objectName) == false)
+                    {
+                        return (command, "");
+                    }
+                    return (command, objectName);
+                }
+                
+                return (command, objectName);
+            }
+
             // start game + game loop
             Console.WriteLine();
             Console.WriteLine(title + "\n");
@@ -130,13 +196,16 @@ namespace Text_Adventure
             {
                 Console.Write(">");
                 string input = Console.ReadLine().ToLower().Trim();
-                string command = input.IndexOf(" ") > -1 ? input.Substring(0, input.IndexOf(" ")) : input;
-                string rest = input.IndexOf(" ") > -1 ? input.Substring(input.IndexOf(" ") + 1) : "";
+                // string command = input.IndexOf(" ") > -1 ? input.Substring(0, input.IndexOf(" ")) : input;
+                // string rest = input.IndexOf(" ") > -1 ? input.Substring(input.IndexOf(" ") + 1) : "";
+
+                (string command, string objectName) = ParseInput(input);
+
 
                 Console.WriteLine();
                 int parameter = 0;
                 string output;
-                
+
                 if (usingMusicQueue)
                 {
                     int codeAnswer = musicQueueCode[musicQueueIndex];
@@ -160,7 +229,7 @@ namespace Text_Adventure
                         case "right":
                             inputedAnswer = 3;
                             break;
-                        
+
                         default:
                             invalidAnswer = true;
                             break;
@@ -173,7 +242,7 @@ namespace Text_Adventure
                     else if (inputedAnswer == codeAnswer)
                     {
                         if (musicQueueIndex < 7)
-                        { 
+                        {
                             output = currentRoom.GetObject("Music Queue").CallInteractMethod("correct");
                             Console.WriteLine(output);
                             output = currentRoom.GetObject("Music Queue").CallInteractMethod("use");
@@ -184,7 +253,7 @@ namespace Text_Adventure
                             output = currentRoom.GetObject("Music Queue").CallInteractMethod("unlocked");
                             Console.WriteLine(output + "\n");
                             usingMusicQueue = false;
-                            USBUnlocked = true;
+                            musicQueueUnlocked = true;
                         }
                         musicQueueIndex += 1;
                     }
@@ -199,7 +268,7 @@ namespace Text_Adventure
                 else
                 {
                     switch (command)
-                    {   
+                    {
                         case "help":
                             break;
 
@@ -254,34 +323,26 @@ namespace Text_Adventure
 
                         case "inventory":
                         case "inv":
-                            if (rest.Equals(""))
+                            if (objectName.Equals(""))
                             {
                                 Console.WriteLine(inventory + "\n");
                             }
                             else
                             {
-                                try
-                                {
-                                    output = inventory.GetObject(rest).CallInteractMethod("examine");
-                                    Console.WriteLine(output + "\n");
-                                }
-                                catch (NullReferenceException e)
-                                {
-                                    Console.WriteLine("There's no such thing.\n");
-                                }    
+                                Console.WriteLine("You cannot do that.");
                             }
-                            
+
                             break;
 
                         case "examine":
                         case "x":
-                            if (rest.Equals(""))
+                            if (objectName.Equals(""))
                             {
                                 Console.WriteLine("What to examine?\n");
                             }
                             else
-                            {   
-                                if (rest.Equals("gamblers"))
+                            {
+                                if (objectName.Equals("gamblers"))
                                 {
                                     parameter = gamblersStage;
                                     if (USBgiven == false)
@@ -291,26 +352,38 @@ namespace Text_Adventure
                                             gamblersStage = 1;
                                         }
                                         else if (gamblersStage == 1)
-                                        {  
+                                        {
                                             USBgiven = true;
                                             inventory.AddObject(currentRoom.RemoveObject("USB drive"));
                                         }
                                     }
                                 }
+                                else if (objectName.Equals("music queue"))
+                                {
+                                    parameter = musicQueueUnlocked ? 1 : 0;
+                                }
                                 try
                                 {
-                                    output = currentRoom.GetObject(rest).CallInteractMethod("examine", parameter);
+                                    output = currentRoom.GetObject(objectName).CallInteractMethod("examine", parameter);
                                     Console.WriteLine(output + "\n");
                                 }
                                 catch (NullReferenceException e)
                                 {
-                                    Console.WriteLine("There's no such thing.\n");
-                                }    
+                                    try
+                                    {
+                                        output = inventory.GetObject(objectName).CallInteractMethod("examine", parameter);
+                                        Console.WriteLine(output + "\n");
+                                    }
+                                    catch (NullReferenceException _e)
+                                    {
+                                        Console.WriteLine("There's no such thing.\n");
+                                    }
+                                }
                             }
                             break;
 
                         case "open":
-                            if (rest.Equals(""))
+                            if (objectName.Equals(""))
                             {
                                 Console.WriteLine("What to open?\n");
                             }
@@ -318,39 +391,54 @@ namespace Text_Adventure
                             {
                                 try
                                 {
-                                    output = currentRoom.GetObject(rest).CallInteractMethod("open");
+                                    output = currentRoom.GetObject(objectName).CallInteractMethod("open");
                                     Console.WriteLine(output + "\n");
                                 }
                                 catch (NullReferenceException e)
                                 {
                                     Console.WriteLine("You cannot open that.\n");
-                                }    
+                                }
                             }
                             break;
 
                         case "use":
-                            if (rest.Equals(""))
+                            if (objectName.Equals(""))
                             {
                                 Console.WriteLine("What to use?\n");
                             }
                             else
                             {
-                                if (rest.Equals("music queue"))
+                                if (objectName.Equals("music queue"))
                                 {
-                                    usingMusicQueue = true;
+                                    if (musicQueueUnlocked)
+                                    {
+                                        parameter = 1;
+                                    }
+                                    else
+                                    {
+                                        usingMusicQueue = true;
+                                    }
                                 }
                                 try
                                 {
-                                    output = currentRoom.GetObject(rest).CallInteractMethod("use");
+                                    output = currentRoom.GetObject(objectName).CallInteractMethod("use", parameter);
                                     Console.WriteLine(output + "\n");
                                 }
                                 catch (NullReferenceException e)
                                 {
-                                    Console.WriteLine("You cannot use that.\n");
-                                }    
+                                    try
+                                    {
+                                        output = inventory.GetObject(objectName).CallInteractMethod("use", parameter);
+                                        Console.WriteLine(output + "\n");
+                                    }
+                                    catch (NullReferenceException _e)
+                                    {
+                                        Console.WriteLine("You cannot use that.\n");
+                                    }
+                                }
                             }
                             break;
-                        
+
 
                         case "verbose":
                             verbose = true;

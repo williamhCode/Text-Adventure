@@ -12,6 +12,14 @@ namespace Text_Adventure
             this.objects = objects;
         }
 
+        public string getObjectName(string name)
+        {
+            Object obj = objects.Find(x => x.name.ToLower().Contains(name.ToLower()));
+            if (obj == null)
+                return "";
+            return obj.name;
+        }
+
         public Object GetObject(string name)
         {
             return objects.Find(x => x.name.ToLower().Equals(name.ToLower()));
@@ -36,6 +44,10 @@ namespace Text_Adventure
             foreach (Object obj in objects)
             {
                 output += obj.name + ", ";
+            }
+            if (output.Equals("Items: "))
+            {
+                return "You have no items.";
             }
             return output.Substring(0, output.Length - 2);
         }

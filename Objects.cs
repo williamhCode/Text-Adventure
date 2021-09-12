@@ -85,29 +85,51 @@ namespace Text_Adventure
             return "You cannot do that.";
         }
 
-        public string MusicQueue(Object obj, string command, int _)
+        public string USBDrive(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {
                 return obj.descriptions[0];
             }
-            else if(command.Equals("use"))
-            {
-                return obj.descriptions[1];
-            }
-            else if(command.Equals("incorrect"))
-            {
-                return obj.descriptions[2];
-            }
-            else if(command.Equals("correct"))
-            {
-                return obj.descriptions[3];
-            }
-            else if(command.Equals("unlocked"))
-            {
-                return obj.descriptions[4];
-            }
+            return "You cannot do that.";
+        }
 
+        public string MusicQueue(Object obj, string command, int unlocked)
+        {
+            if (unlocked == 0)
+            {
+                if (command.Equals("examine"))
+                {
+                    return obj.descriptions[0];
+                }
+                else if(command.Equals("use"))
+                {
+                    return obj.descriptions[1];
+                }
+                else if(command.Equals("incorrect"))
+                {
+                    return obj.descriptions[2];
+                }
+                else if(command.Equals("correct"))
+                {
+                    return obj.descriptions[3];
+                }
+                else if(command.Equals("unlocked"))
+                {
+                    return obj.descriptions[4];
+                }
+            }
+            else
+            {
+                if (command.Equals("examine"))
+                {
+                    return obj.descriptions[5];
+                }
+                if (command.Equals("use"))
+                {
+                    return obj.descriptions[6];
+                }
+            }
             return "You cannot do that.";
         }
     }

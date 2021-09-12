@@ -5,7 +5,7 @@ The desk is a perfectly normal plain old desk.
 2Computer
 The computer is a perfectly normal plain old computer.
 When you turn the computer on all you see is popup that says "boss wants to see you" you can't close it, nothing else on the computer seems to work.
-2LOCKED DOOR
+2Locked Door
 As you approach the door you here the faint sound of gears turning.
 The door doesn't budge when you try and move it but there also isn't a keyhole for you to unlock it.
 as you put the key into the hole you hear a distant beep sound and when you look up the door has opened and revealed an elevator
@@ -54,7 +54,7 @@ As you pick up the pen it begins to move in your hands as you see parts of it di
 It's a very weird pen with nothing plain about it.
 The message reads "get out".
 
--Elevator
+-ELEVATOR
 as you enter the Elevator it seems to be pretty normal but the buttons to pick floor are missing replaced with a big red exit button
 1Exit
 When you press the button the Elevator door closes and begins to descend but after a few seconds you hear a siren blaring as the lights in the Elevator go out and the exit button you saw before vanishes.
