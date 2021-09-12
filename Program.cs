@@ -87,6 +87,12 @@ namespace Text_Adventure
             rooms_3[4].SetConnections(null, null, null, rooms_3[3]);
             rooms_3[5].SetConnections(null, rooms_3[0], null, null);
 
+            ObjectFunctions OF = new ObjectFunctions();
+            rooms_2[0].GetObject("DJ").SetInteractMethod(OF.DJ);
+            rooms_2[0].GetObject("VIP Door").SetInteractMethod(OF.VIPDoor);
+            rooms_2[1].GetObject("Gamblers").SetInteractMethod(OF.Gamblers);
+            rooms_2[2].GetObject("Music Queue").SetInteractMethod(OF.MusicQueue);
+
             // game logic variables
             Player inventory = new Player(new List<Object>());
 
