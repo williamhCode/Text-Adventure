@@ -31,49 +31,6 @@ namespace Text_Adventure
 
     class ObjectFunctions
     {
-        bool pen = false;
-        bool coin = false;
-        bool ticket = false;
-        bool key = false;
-        bool music = false;
-        public string DJ(Object obj, string command, bool _)
-        {
-            if (command.Equals("examine"))
-            {
-                return obj.descriptions[0];
-            }
-            return "You cannot do that.";
-        }
-
-        public string VIPDoor(Object obj, string command, bool locked = false)
-        {
-            if (ticket == true)
-            {
-                locked = true;
-            }
-            if (command.Equals("examine"))
-            {
-                return obj.descriptions[0];
-            }
-            else if (command.Equals("open"))
-            {
-                if (locked)
-                {
-                    Random rnd = new Random();
-                    if (rnd.NextDouble() < 0.5)
-                        return obj.descriptions[1];
-                    else
-                        return obj.descriptions[2];
-                }
-                else
-                {
-                    return obj.descriptions[3];
-                }
-            }
-
-
-            return "You cannot do that";
-        }
         public string Desk(Object obj, string command, bool _)
         {
             if (command.Equals("examine"))
@@ -132,7 +89,7 @@ namespace Text_Adventure
             return "you cannot do that";
 
         }
-        public string Mirror(object obj, string command)
+        public string Mirror(Object obj, string command)
         {
             if (command.Equals("examine"))
             {
@@ -245,31 +202,6 @@ namespace Text_Adventure
         public string exitButton(Object obj, string command)
         {
             if (command.Equals("use"))
-            {
-                return obj.descriptions[0];
-            }
-            return "you can't do that";
-        }
-        public string gamblers(Object obj, string command)
-        {
-            if (command.Equals("examine"))
-            {
-                return obj.descriptions[0];
-            }
-            if (command.Equals("use") && music == false)
-            {
-                return obj.descriptions[1];
-            }
-            if (command.Equals("use") && music = true)
-            {
-                return obj.descriptions[2];
-                coin = true;
-            }
-            return "you can't do that";
-        }
-        public string goldenCoin(Object obj, string command)
-        {
-            if (command.Equals("examine"))
             {
                 return obj.descriptions[0];
             }
