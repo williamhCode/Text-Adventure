@@ -33,7 +33,7 @@ namespace Text_Adventure
     {
         public string DJ(Object obj, string command, int _)
         {
-            if (command.Equals("examine"))
+            if (command.Equals("examine") || command.Equals("talk to"))
             {
                 return obj.descriptions[0];
             }
@@ -66,7 +66,7 @@ namespace Text_Adventure
 
         public string Gamblers(Object obj, string command, int stage)
         {
-            if (command.Equals("examine"))
+            if (command.Equals("examine") || command.Equals("talk to"))
             {
                 if (stage == 0)
                 {
@@ -85,7 +85,24 @@ namespace Text_Adventure
             return "You cannot do that.";
         }
 
-        public string USBDrive(Object obj, string command, int _)
+        public string USBDrive(Object obj, string command, int inserting)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            if (command.Equals("use"))
+            {
+                if (inserting == 1)
+                {
+                    return obj.descriptions[1];
+                }
+                return "You might want to use it on something.";
+            }
+            return "You cannot do that.";
+        }
+
+        public string GoldenCoin(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {

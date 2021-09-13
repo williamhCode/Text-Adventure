@@ -12,7 +12,7 @@ namespace Text_Adventure
             this.objects = objects;
         }
 
-        public string getObjectName(string name)
+        public string GetObjectName(string name)
         {
             Object obj = objects.Find(x => x.name.ToLower().Contains(name.ToLower()));
             if (obj == null)

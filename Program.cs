@@ -3,6 +3,8 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 
+#pragma warning disable 0168
+
 namespace Text_Adventure
 {
     class Program
@@ -83,7 +85,6 @@ namespace Text_Adventure
             rooms_2[0].GetObject("DJ").SetInteractMethod(OF.DJ);
             rooms_2[0].GetObject("VIP Door").SetInteractMethod(OF.VIPDoor);
             rooms_2[1].GetObject("Gamblers").SetInteractMethod(OF.Gamblers);
-            rooms_2[1].GetObject("USB Drive").SetInteractMethod(OF.USBDrive);
             rooms_2[2].GetObject("Music Queue").SetInteractMethod(OF.MusicQueue);
 
             // game logic variables
@@ -94,8 +95,10 @@ namespace Text_Adventure
 
             bool verbose = true;
 
+            // 0 = not talked to, 1 = talked to, 2 = music changed
             int gamblersStage = 0;
             bool USBgiven = false;
+            bool coinGiven = false;
 
             // 0 = up, 1 = down, 2 = left, 3 = right
             int[] musicQueueCode = { 0, 0, 1, 1, 2, 3, 2, 3 };
@@ -122,7 +125,7 @@ namespace Text_Adventure
                 return false;
             }
 
-            Dictionary<string, string> commandDict = new Dictionary<string, string>
+            var commandDict = new Dictionary<string, string>
             {
                 {"look", "look"},
                 {"l", "look"},
@@ -138,14 +141,18 @@ namespace Text_Adventure
                 {"push", "open"},
                 {"use", "use"},
                 {"put", "use"},
+                {"inv", "inventory"},
+                {"inventory", "inventory"},
+                {"talk to", "talk to"},
             };
 
-            Dictionary<string, string> directionDict = new Dictionary<string, string>
+            var directionDict = new Dictionary<string, string>
             {
                 {"north","north"},
                 {"n", "north"},
-                {"foward", "north"},
-                {"fowards", "north"},
+                {"forward", "north"},
+                {"forwards", "north"},
+                {"up", "north"},
                 {"west","west"},
                 {"w", "west"},
                 {"left", "west"},
@@ -153,38 +160,155 @@ namespace Text_Adventure
                 {"s", "south"},
                 {"backward", "south"},
                 {"backwards", "south"},
+                {"down", "south"},
                 {"east","east"},
                 {"e", "east"},
                 {"right", "east"},
             };
 
-            (string command, string objectName) ParseInput(string input)
+            var prepositionDict = new Dictionary<string, string>
             {
-                string command = "", objectName = "";
-                char[] seperators = new char[] {' ', ',', '.' };
+                {"in", "in"},
+                {"on", "in"},
+            };
+
+            (string command, string objectName, string otherObjectName) ParseInput(string input)
+            {
+                string command = null, objectName = null, otherObjectName = null;
+                string preposition = "";
+                char[] seperators = new char[] { ' ', ',', '.' };
                 string[] words = input.Split(seperators, StringSplitOptions.RemoveEmptyEntries);
                 int input_length = words.Length;
-                
+
+                // 0 = verb, 1 = noun, 2 = ??
+                int stage = 0;
                 int index = 0;
-                if (commandDict.TryGetValue(words[index], out command) == false)
+
+                while (index < input_length)
                 {
-                    if (++index > input_length - 1)
+                    if (stage == 0)
                     {
-                        return ("", "");
+                        if (commandDict.TryGetValue(words[index], out command) == false)
+                        {
+                            if (index + 1 <= input_length - 1)
+                            {
+                                if (commandDict.TryGetValue(words[index] + " " + words[index + 1], out command))
+                                {
+                                    index++;
+                                }
+                                else
+                                {
+                                    command = words[index];
+                                }
+                            }
+                            else
+                            {
+                                command = words[index];
+                            }
+                        }
+                        else
+                        {
+                            if (index + 1 <= input_length - 1)
+                            {
+                                string prevCommand = command;
+                                if (commandDict.TryGetValue(words[index] + " " + words[index + 1], out command) == false)
+                                {
+                                    command = prevCommand;
+                                }
+                                else
+                                {
+                                    index++;
+                                }
+                            }
+                        }
                     }
-                    commandDict.TryGetValue(words[0] + " " + words[1], out command);
+                    else if (stage == 1)
+                    {
+                        if (command.Equals("go"))
+                        {
+                            directionDict.TryGetValue(words[index], out objectName);
+                        }
+                        else
+                        {
+                            objectName = currentRoom.GetObjectName(words[index]);
+                            if (objectName == "")
+                            {
+                                objectName = inventory.GetObjectName(words[index]);
+                            }
+                            string tempObjectName = objectName;
+                            if (objectName != "")
+                            {
+                                if (index + 1 <= input_length - 1)
+                                {
+                                    objectName = currentRoom.GetObjectName(words[index] + " " + words[index + 1]);
+                                    if (objectName == "")
+                                    {
+                                        objectName = inventory.GetObjectName(words[index] + " " + words[index + 1]);
+                                    }
+                                    if (objectName != "")
+                                    {
+                                        index++;
+                                    }
+                                    else
+                                    {
+                                        objectName = tempObjectName;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if (stage == 2)
+                    {
+                        prepositionDict.TryGetValue(words[index], out preposition);
+                    }
+                    else if (stage == 3)
+                    {
+                        if (preposition != null)
+                        {
+                            otherObjectName = currentRoom.GetObjectName(words[index]);
+                            if (otherObjectName == "")
+                            {
+                                otherObjectName = inventory.GetObjectName(words[index]);
+                            }
+                            if (otherObjectName != "")
+                            {
+                                if (index + 1 <= input_length - 1)
+                                {
+                                    otherObjectName = currentRoom.GetObjectName(words[index] + " " + words[index + 1]);
+                                    if (otherObjectName == "")
+                                    {
+                                        otherObjectName = inventory.GetObjectName(words[index] + " " + words[index + 1]);
+                                    }
+                                    if (otherObjectName != "")
+                                    {
+                                        index++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    index++;
+                    stage++;
                 }
-                index++;
-                if (command.Equals("go"))
+
+                if (command != null)
                 {
-                    if(directionDict.TryGetValue(words[index], out objectName) == false)
-                    {
-                        return (command, "");
-                    }
-                    return (command, objectName);
+                    command = command.ToLower();
                 }
-                
-                return (command, objectName);
+                if (objectName != null)
+                {
+                    objectName = objectName.ToLower();
+                }
+                if (otherObjectName != null)
+                {
+                    otherObjectName = otherObjectName.ToLower();
+                }
+                else
+                {
+                    otherObjectName = "";
+                }
+
+                return (command, objectName, otherObjectName);
             }
 
             // start game + game loop
@@ -196,11 +320,7 @@ namespace Text_Adventure
             {
                 Console.Write(">");
                 string input = Console.ReadLine().ToLower().Trim();
-                // string command = input.IndexOf(" ") > -1 ? input.Substring(0, input.IndexOf(" ")) : input;
-                // string rest = input.IndexOf(" ") > -1 ? input.Substring(input.IndexOf(" ") + 1) : "";
-
-                (string command, string objectName) = ParseInput(input);
-
+                (string command, string objectName, string otherObjectName) = ParseInput(input);
 
                 Console.WriteLine();
                 int parameter = 0;
@@ -277,53 +397,57 @@ namespace Text_Adventure
                             Console.WriteLine(currentRoom + "\n");
                             break;
 
-                        case "north":
-                        case "n":
-                            if (currentRoom.north == null)
-                                Console.WriteLine("There is nothing in the north.\n");
-                            else
+                        case "go":
+                            switch (objectName)
                             {
-                                currentRoom = currentRoom.north;
-                                EnterRoom(currentRoom);
-                            }
-                            break;
+                                case "north":
+                                    if (currentRoom.north == null)
+                                        Console.WriteLine("There is nothing in the north.\n");
+                                    else
+                                    {
+                                        currentRoom = currentRoom.north;
+                                        EnterRoom(currentRoom);
+                                    }
+                                    break;
 
-                        case "west":
-                        case "w":
-                            if (currentRoom.west == null)
-                                Console.WriteLine("There is nothing in the west.\n");
-                            else
-                            {
-                                currentRoom = currentRoom.west;
-                                EnterRoom(currentRoom);
-                            }
-                            break;
+                                case "west":
+                                    if (currentRoom.west == null)
+                                        Console.WriteLine("There is nothing in the west.\n");
+                                    else
+                                    {
+                                        currentRoom = currentRoom.west;
+                                        EnterRoom(currentRoom);
+                                    }
+                                    break;
 
-                        case "south":
-                        case "s":
-                            if (currentRoom.south == null)
-                                Console.WriteLine("There is nothing in the south.\n");
-                            else
-                            {
-                                currentRoom = currentRoom.south;
-                                EnterRoom(currentRoom);
-                            }
-                            break;
+                                case "south":
+                                    if (currentRoom.south == null)
+                                        Console.WriteLine("There is nothing in the south.\n");
+                                    else
+                                    {
+                                        currentRoom = currentRoom.south;
+                                        EnterRoom(currentRoom);
+                                    }
+                                    break;
 
-                        case "east":
-                        case "e":
-                            if (currentRoom.east == null)
-                                Console.WriteLine("There is nothing in the east.\n");
-                            else
-                            {
-                                currentRoom = currentRoom.east;
-                                EnterRoom(currentRoom);
+                                case "east":
+                                    if (currentRoom.east == null)
+                                        Console.WriteLine("There is nothing in the east.\n");
+                                    else
+                                    {
+                                        currentRoom = currentRoom.east;
+                                        EnterRoom(currentRoom);
+                                    }
+                                    break;
+
+                                default:
+                                    Console.WriteLine("Go where?\n");
+                                    break;
                             }
                             break;
 
                         case "inventory":
-                        case "inv":
-                            if (objectName.Equals(""))
+                            if (objectName == null)
                             {
                                 Console.WriteLine(inventory + "\n");
                             }
@@ -331,12 +455,11 @@ namespace Text_Adventure
                             {
                                 Console.WriteLine("You cannot do that.");
                             }
-
                             break;
 
                         case "examine":
-                        case "x":
-                            if (objectName.Equals(""))
+                        case "talk to":
+                            if (objectName == null)
                             {
                                 Console.WriteLine("What to examine?\n");
                             }
@@ -345,18 +468,33 @@ namespace Text_Adventure
                                 if (objectName.Equals("gamblers"))
                                 {
                                     parameter = gamblersStage;
-                                    if (USBgiven == false)
-                                    {
                                         if (gamblersStage == 0)
                                         {
                                             gamblersStage = 1;
                                         }
                                         else if (gamblersStage == 1)
                                         {
+                                            if (USBgiven == false)
+                                            {
+                                                currentRoom.GetObject("USB Drive").SetInteractMethod(OF.USBDrive);
+                                                inventory.AddObject(currentRoom.RemoveObject("USB drive"));
+                                            }
                                             USBgiven = true;
-                                            inventory.AddObject(currentRoom.RemoveObject("USB drive"));
                                         }
-                                    }
+                                        else if (gamblersStage == 2)
+                                        {  
+                                            if (coinGiven == false)
+                                            {
+                                                currentRoom.GetObject("Golden Coin").SetInteractMethod(OF.GoldenCoin);
+                                                inventory.AddObject(currentRoom.RemoveObject("Golden Coin"));
+                                            }
+                                            coinGiven = true;
+                                            // gamblersStage = 3;
+                                        }
+                                        else if (gamblersStage == 3)
+                                        {
+                                            
+                                        }
                                 }
                                 else if (objectName.Equals("music queue"))
                                 {
@@ -364,14 +502,14 @@ namespace Text_Adventure
                                 }
                                 try
                                 {
-                                    output = currentRoom.GetObject(objectName).CallInteractMethod("examine", parameter);
+                                    output = currentRoom.GetObject(objectName).CallInteractMethod(command, parameter);
                                     Console.WriteLine(output + "\n");
                                 }
                                 catch (NullReferenceException e)
                                 {
                                     try
                                     {
-                                        output = inventory.GetObject(objectName).CallInteractMethod("examine", parameter);
+                                        output = inventory.GetObject(objectName).CallInteractMethod(command, parameter);
                                         Console.WriteLine(output + "\n");
                                     }
                                     catch (NullReferenceException _e)
@@ -383,7 +521,7 @@ namespace Text_Adventure
                             break;
 
                         case "open":
-                            if (objectName.Equals(""))
+                            if (objectName == null)
                             {
                                 Console.WriteLine("What to open?\n");
                             }
@@ -391,18 +529,18 @@ namespace Text_Adventure
                             {
                                 try
                                 {
-                                    output = currentRoom.GetObject(objectName).CallInteractMethod("open");
+                                    output = currentRoom.GetObject(objectName).CallInteractMethod(command);
                                     Console.WriteLine(output + "\n");
                                 }
                                 catch (NullReferenceException e)
                                 {
-                                    Console.WriteLine("You cannot open that.\n");
+                                    Console.WriteLine("You cannot do that.\n");
                                 }
                             }
                             break;
 
                         case "use":
-                            if (objectName.Equals(""))
+                            if (objectName == null)
                             {
                                 Console.WriteLine("What to use?\n");
                             }
@@ -419,22 +557,31 @@ namespace Text_Adventure
                                         usingMusicQueue = true;
                                     }
                                 }
+                                if (objectName.Equals("usb drive") && otherObjectName.Equals("music queue") && musicQueueUnlocked)
+                                {
+                                    parameter = 1;
+                                    gamblersStage = 2;
+                                }
                                 try
                                 {
-                                    output = currentRoom.GetObject(objectName).CallInteractMethod("use", parameter);
+                                    output = currentRoom.GetObject(objectName).CallInteractMethod(command, parameter);
                                     Console.WriteLine(output + "\n");
                                 }
                                 catch (NullReferenceException e)
                                 {
                                     try
                                     {
-                                        output = inventory.GetObject(objectName).CallInteractMethod("use", parameter);
+                                        output = inventory.GetObject(objectName).CallInteractMethod(command, parameter);
                                         Console.WriteLine(output + "\n");
                                     }
                                     catch (NullReferenceException _e)
                                     {
-                                        Console.WriteLine("You cannot use that.\n");
+                                        Console.WriteLine("You cannot do that.\n");
                                     }
+                                }
+                                if (objectName.Equals("usb drive") && otherObjectName.Equals("music queue") && musicQueueUnlocked)
+                                {
+                                    inventory.RemoveObject("usb drive");
                                 }
                             }
                             break;
@@ -453,7 +600,7 @@ namespace Text_Adventure
                             break;
 
                         default:
-                            output = $"\"{command}\" is not a command.";
+                            output = $"I do not recognize \"{command}\".";
                             Console.WriteLine(output + "\n");
                             break;
 
