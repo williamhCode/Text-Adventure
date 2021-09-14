@@ -39,8 +39,7 @@ As you enter the room, the door slams shut behind you and the music from the dan
 4Elevator
 As you approach the elevator there is only one button on it that says exit and a spot to put a key.
 Nothing happens.
-The key fits perfectly and as you turn the button lights up yellow.
-The button turns green as the elevator stutters and opens.
+The key fits perfectly and as you look up the button has turned green as the elevator doors start to stutter and open.
 1Table
 It's a normal table but you see a note stuck to it
 1Note
