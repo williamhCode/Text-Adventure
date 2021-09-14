@@ -30,9 +30,41 @@ namespace Text_Adventure
             this.east = east;
         }
 
+        bool HasObjectName(Object obj, string name)
+        {
+            if (obj.name.ToLower().Equals(name))
+            {
+                return true;
+            }
+            string[] words = obj.name.ToLower().Split(' ');
+            foreach (string word in words)
+            {
+                if (word.Equals(name))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public string GetObjectName(string name)
+        {
+            Object obj = objects.Find(obj => HasObjectName(obj, name));
+            if (obj == null)
+                return "";
+            return obj.name;
+        }
+
         public Object GetObject(string name)
         {
             return objects.Find(x => x.name.ToLower().Equals(name.ToLower()));
+        }
+
+        public Object RemoveObject(string name)
+        {
+            Object obj = GetObject(name);
+            objects.Remove(obj);
+            return obj;
         }
 
         override

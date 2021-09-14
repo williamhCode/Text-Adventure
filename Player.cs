@@ -12,17 +12,44 @@ namespace Text_Adventure
             this.objects = objects;
         }
 
-        public Object getObject(string name)
+        public string GetObjectName(string name)
         {
-            int index = objects.FindIndex(obj => obj.name.ToLower().Equals(name.ToLower()));
-            Object match = objects[index];
-            objects.RemoveAt(index);
-            return match;
+            Object obj = objects.Find(x => x.name.ToLower().Contains(name.ToLower()));
+            if (obj == null)
+                return "";
+            return obj.name;
         }
 
-        public void addObject(Object obj)
+        public Object GetObject(string name)
+        {
+            return objects.Find(x => x.name.ToLower().Equals(name.ToLower()));
+        }
+
+        public Object RemoveObject(string name)
+        {
+            Object obj = GetObject(name);
+            objects.Remove(obj);
+            return obj;
+        }
+
+        public void AddObject(Object obj)
         {
             objects.Add(obj);
+        }
+
+        override
+        public string ToString()
+        {
+            string output = "Items: ";
+            foreach (Object obj in objects)
+            {
+                output += obj.name + ", ";
+            }
+            if (output.Equals("Items: "))
+            {
+                return "You have no items.";
+            }
+            return output.Substring(0, output.Length - 2);
         }
     }
 }

@@ -16,7 +16,7 @@ The conference room has a big desk in the center for use during meetings. Aside 
 As soon as you glance towards your boss, he notices you "ah hello there thank you for coming I have a job for you, I can't find my favorite pen and I was hoping you could get it for me".
 As you give your boss the pen, he takes a good look at it and says, "huh that wasn't there before well I hope you will ignore that ominous warning, anyways thank you for finding this for me your free to go on break if you want".
 1DeskB
-It’s a perfectly normal plain old desk.
+Itï¿½s a perfectly normal plain old desk.
 
 -BATHROOM
 As you enter the bathroom you notice four closed stalls along the wall and a mirror.
@@ -54,8 +54,8 @@ It's a kind of normal plain pen.
 As you pick up the pen it begins to move in your hands as you see parts of it disintegrate until a message appears on the pen.
 It's now a very weird pen with nothing plain about it with a message that reads "get out".
 
-
 -Elevator
 As you enter the Elevator it seems to be pretty normal but the buttons to pick floor are missing replaced with a big red exit button.
 1Exit Button
 When you press the button the Elevator door closes and begins to descend but after a few seconds you hear a siren blaring as the lights in the Elevator go out and the exit button you saw before vanishes.
+.
