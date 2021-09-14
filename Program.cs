@@ -86,11 +86,26 @@ namespace Text_Adventure
             rooms_2[0].GetObject("VIP Door").SetInteractMethod(OF.VIPDoor);
             rooms_2[1].GetObject("Gamblers").SetInteractMethod(OF.Gamblers);
             rooms_2[2].GetObject("Music Queue").SetInteractMethod(OF.MusicQueue);
-
+            rooms_3[0].GetObject("Computer").SetInteractMethod(OF.Computer);
+            rooms_3[0].GetObject("Desk").SetInteractMethod(OF.Desk);
+            rooms_3[0].GetObject("Locked Door").SetInteractMethod(OF.LockedDoor);
+            rooms_3[1].GetObject("Boss").SetInteractMethod(OF.boss);
+            rooms_3[2].GetObject("Mirror").SetInteractMethod(OF.Mirror);
+            rooms_3[2].GetObject("Stall one").SetInteractMethod(OF.StallOne);
+            rooms_3[2].GetObject("Stall two").SetInteractMethod(OF.StallTwo);
+            rooms_3[2].GetObject("Stall three").SetInteractMethod(OF.StallThree);
+            rooms_3[2].GetObject("Stall four").SetInteractMethod(OF.StallFour);
+            rooms_3[2].GetObject("Wall").SetInteractMethod(OF.Wall);
+            rooms_3[3].GetObject("Small Group").SetInteractMethod(OF.smallGroup);
+            rooms_3[3].GetObject("Collegue in a yellow shirt").SetInteractMethod(OF.YellowShirtCollegue);
+            rooms_3[4].GetObject("Box").SetInteractMethod(OF.Box);
+            rooms_3[4].GetObject("Pen").SetInteractMethod(OF.Pen);
+            rooms_3[5].GetObject("Exit Button").SetInteractMethod(OF.exitButton);
+            
             // game logic variables
             Player inventory = new Player(new List<Object>());
 
-            Room currentRoom = rooms_2[0];
+            Room currentRoom = rooms_3[0];
             List<Room> visitedRooms = new List<Room>() { currentRoom };
 
             bool verbose = true;
@@ -138,12 +153,21 @@ namespace Text_Adventure
                 {"inspect", "examine"},
                 {"see", "examine"},
                 {"open", "open"},
-                {"push", "open"},
                 {"use", "use"},
                 {"put", "use"},
                 {"inv", "inventory"},
                 {"inventory", "inventory"},
                 {"talk to", "talk to"},
+                {"move","move"},
+                {"lift","move"},
+                {"take","take"},
+                {"pick up", "take"},
+                {"grab","take"},
+                {"push","push" },
+                {"press","push" },
+                {"touch","push" },
+                {"give","give" },
+
             };
 
             var directionDict = new Dictionary<string, string>
@@ -468,33 +492,34 @@ namespace Text_Adventure
                                 if (objectName.Equals("gamblers"))
                                 {
                                     parameter = gamblersStage;
-                                        if (gamblersStage == 0)
+                                    if (gamblersStage == 0)
+                                    {
+                                        gamblersStage = 1;
+                                    }
+                                    else if (gamblersStage == 1)
+                                    {
+                                        if (USBgiven == false)
                                         {
-                                            gamblersStage = 1;
+                                            currentRoom.GetObject("USB Drive").SetInteractMethod(OF.USBDrive);
+                                            inventory.AddObject(currentRoom.RemoveObject("USB drive"));
                                         }
-                                        else if (gamblersStage == 1)
+                                        USBgiven = true;
+                                    }
+                                    else if (gamblersStage == 2)
+                                    {
+                                        if (coinGiven == false)
                                         {
-                                            if (USBgiven == false)
-                                            {
-                                                currentRoom.GetObject("USB Drive").SetInteractMethod(OF.USBDrive);
-                                                inventory.AddObject(currentRoom.RemoveObject("USB drive"));
-                                            }
-                                            USBgiven = true;
+                                            currentRoom.GetObject("Golden Coin").SetInteractMethod(OF.GoldenCoin);
+                                            inventory.AddObject(currentRoom.RemoveObject("Golden Coin"));
                                         }
-                                        else if (gamblersStage == 2)
-                                        {  
-                                            if (coinGiven == false)
-                                            {
-                                                currentRoom.GetObject("Golden Coin").SetInteractMethod(OF.GoldenCoin);
-                                                inventory.AddObject(currentRoom.RemoveObject("Golden Coin"));
-                                            }
-                                            coinGiven = true;
-                                            // gamblersStage = 3;
-                                        }
-                                        else if (gamblersStage == 3)
-                                        {
-                                            
-                                        }
+                                        coinGiven = true;
+                                        // gamblersStage = 3;
+                                    }
+                                    else if (gamblersStage == 3)
+                                    {
+
+                                    }
+
                                 }
                                 else if (objectName.Equals("music queue"))
                                 {
@@ -518,8 +543,110 @@ namespace Text_Adventure
                                     }
                                 }
                             }
-                            break;
 
+                            break;
+                        case "move":
+                            if (objectName == null)
+                            {
+                                Console.WriteLine("What to move?\n");
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    output = currentRoom.GetObject(objectName).CallInteractMethod(command);
+                                    Console.WriteLine(output + "\n");
+                                }
+
+                                catch (NullReferenceException e)
+                                {
+                                    Console.WriteLine("You cannot do that\n");
+                                }
+                            }
+                            break;
+                        case "take":
+                            if (objectName == null)
+                            {
+                                Console.WriteLine("what to take\n");
+                            }
+                            else
+                            {   
+
+                                try
+                                {
+                                    output = currentRoom.GetObject(objectName).CallInteractMethod(command);
+                                    inventory.AddObject(currentRoom.RemoveObject(objectName));
+                                }
+                                catch (NullReferenceException e)
+                                {
+                                    Console.WriteLine("You cannot do that.\n");
+                                }
+
+                            }
+                            break;
+                        case "give":
+                            if (objectName == null)
+                            {
+                                Console.WriteLine("what to take\n");
+                            }
+                            else
+                            {
+
+                                if (currentRoom == rooms_3[2])
+                                {
+                                    output = currentRoom.GetObject(objectName).CallInteractMethod(command);
+                                    inventory.RemoveObject("Pen");
+                                }
+                                if (currentRoom == rooms_2[1])
+                                {
+                                    output = currentRoom.GetObject(objectName).CallInteractMethod(command);
+                                    inventory.RemoveObject("Coin");
+                                }
+                                try
+                                {
+                                    output = currentRoom.GetObject(objectName).CallInteractMethod(command, parameter);
+                                    Console.WriteLine(output + "\n");
+                                }
+                                catch (NullReferenceException e)
+                                {
+                                    Console.WriteLine("You cannot do that.\n");
+                                }
+
+                            }
+                            break;
+                        case "push":
+                            if (objectName == null)
+                            {
+                                Console.WriteLine("what to push\n");
+                            }
+                            else
+                            {
+                                if (objectName.Equals("Wall"))
+                                {
+                                    output = currentRoom.GetObject(objectName).CallInteractMethod(command);
+                                    Console.WriteLine(output + "\n");
+                                    string answer = Console.ReadLine();
+                                    if (answer.Equals("Time"))
+                                    {
+                                        currentRoom.GetObject(objectName).CallInteractMethod("correct");
+                                        inventory.AddObject(currentRoom.RemoveObject("key"));
+                                    }
+                                    {
+                                        currentRoom.GetObject(objectName).CallInteractMethod("wrong");
+
+                                    }
+                                }
+                                try
+                                {
+                                    output = currentRoom.GetObject(objectName).CallInteractMethod(command);
+                                    Console.WriteLine(output + "\n");
+                                }
+                                catch (NullReferenceException e)
+                                {
+                                    Console.WriteLine("You cannot do that.\n");
+                                }
+                            }
+                            break;
                         case "open":
                             if (objectName == null)
                             {
@@ -527,6 +654,20 @@ namespace Text_Adventure
                             }
                             else
                             {
+                                if(objectName.Equals("Locked door"))
+                                {
+                                    if (inventory.GetObject("key")==null)
+                                    {
+                                        output = currentRoom.GetObject(objectName).CallInteractMethod("openL");
+                                        Console.WriteLine(output + "\n");
+                                    }
+                                    if (inventory.GetObject("key") == null)
+                                    {
+                                        output = currentRoom.GetObject(objectName).CallInteractMethod("openU");
+                                        Console.WriteLine(output + "\n");
+                                    }
+
+                                }
                                 try
                                 {
                                     output = currentRoom.GetObject(objectName).CallInteractMethod(command);

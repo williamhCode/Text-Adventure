@@ -15,8 +15,7 @@ The conference room has a big desk in the center for use during meetings. Aside 
 2Boss
 As soon as you glance towards your boss, he notices you "ah hello there thank you for coming I have a job for you, I can't find my favorite pen and I was hoping you could get it for me".
 As you give your boss the pen, he takes a good look at it and says, "huh that wasn't there before well I hope you will ignore that ominous warning, anyways thank you for finding this for me your free to go on break if you want".
-1DeskB
-It�s a perfectly normal plain old desk.
+
 
 -BATHROOM
 As you enter the bathroom you notice four closed stalls along the wall and a mirror.
@@ -49,10 +48,11 @@ The room is a cluttered mess of janitorial supplies as well as the most random c
 2box
 It's a perfectly normal plain old box.
 As you lift the box you see the source of the light, it turns out your bosses pen just had a small LED light on the end of it.
-3Pen
+4Pen
 It's a kind of normal plain pen.
 As you pick up the pen it begins to move in your hands as you see parts of it disintegrate until a message appears on the pen.
 It's now a very weird pen with nothing plain about it with a message that reads "get out".
+As you give your boss the pen, he takes a good look at it and says, "huh that wasn't there before well I hope you will ignore that ominous warning, anyways thank you for finding this for me your free to go on break if you want".
 
 -Elevator
 As you enter the Elevator it seems to be pretty normal but the buttons to pick floor are missing replaced with a big red exit button.
