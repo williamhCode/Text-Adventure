@@ -229,6 +229,18 @@ namespace Text_Adventure
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
         public string Desk(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
