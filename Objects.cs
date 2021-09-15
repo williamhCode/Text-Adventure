@@ -48,11 +48,7 @@ namespace Text_Adventure
             }
             else if (command.Equals("open"))
             {
-                Random rnd = new Random();
-                if (rnd.NextDouble() < 0.5)
-                    return obj.descriptions[1];
-                else
-                    return obj.descriptions[2];
+                return obj.descriptions[1];
             }
             return "You cannot do that.";
         }
@@ -81,6 +77,10 @@ namespace Text_Adventure
                 else if (stage == 2)
                 {
                     return obj.descriptions[2];
+                }
+                else if (stage == 3)
+                {
+                    return obj.descriptions[3];
                 }
                 
             }
@@ -183,6 +183,55 @@ namespace Text_Adventure
                 {
                     return obj.descriptions[6];
                 }
+            }
+            return "You cannot do that.";
+        }
+
+        public string Elevator(Object obj, string command, int hasKey)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            return "You cannot do that.";
+        }
+
+        public string Table(Object obj, string command, int _)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            return "You cannot do that.";
+        }
+        
+        public string Note(Object obj,string command, int _)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            return "You cannot do that.";
+        }
+
+        public string Couch(Object obj, string command, int _)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            return "You cannot do that.";
+        }
+
+        public string Key(Object obj, string command, int takingKey)
+        {
+            if (command.Equals("take") && takingKey == 1)
+            {
+                return obj.descriptions[0];
+            }
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[1];
             }
             return "You cannot do that.";
         }
@@ -372,54 +421,6 @@ namespace Text_Adventure
 
         
 
-        // public string table(Object obj,string command)
-        // {
-        //     if (command.Equals("examine"))
-        //     {
-        //         return obj.descriptions[0];
-        //     }
-        //     return "you can't do that";
-        // }
-
-        // public string couch(Object obj, string command)
-        // {
-        //     if (command.Equals("examine"))
-        //     {
-        //         return obj.descriptions[0];
-        //     }
-        //     if (command.Equals("use"))
-        //     {
-        //         key = true;
-        //         return obj.descriptions[1];
-        //     }
-        //     return "you can't do that";
-        // }
-
-        // public string note(Object obj,string command)
-        // {
-        //     if (command.Equals("examine"))
-        //     {
-        //         return obj.descriptions[0];
-        //     }
-        //     return "you can't do that";
-        // }
-
-        // public string elavator(Object obj, string command)
-        // {
-        //     if (command.Equals("examine"))
-        //     {
-        //         return obj.descriptions[0];
-        //     }
-        //     if (command.Equals("use") && key == false)
-        //     {
-        //         return obj.descriptions[1];
-
-        //     }
-        //     if (command.Equals("use") && key = true)
-        //     {
-        //         return obj.descriptions[2];
-        //     }
-        //     return "you can't do that";
-        // }
+        
     }
 }
