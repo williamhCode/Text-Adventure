@@ -182,7 +182,6 @@ namespace Text_Adventure
             else if (command.Equals("openL"))
             {
                 return obj.descriptions[1];
-
             }
             else if (command.Equals("openU"))
             {

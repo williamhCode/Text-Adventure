@@ -1,20 +1,20 @@
 -OFFICE ROOM
-You wake up startled you are surrounded by a multitude of people, each busily walking around or sitting at their desk. The entire room is filled with rows upon rows of chairs and desks it looks just like a typical office. However, the walls seem to be made from white painted concrete and you see no windows. In your cubicle all you have is a desk and a computer. also, as you look around you see a door to a conference room, a bathroom, a break room, and a door with no sign above it.
+The entire room is filled with rows upon rows of chairs and desks it looks just like a typical office. However, the walls seem to be made from white painted concrete and you see no windows. In your cubicle. all you have is a desk and a computer. As you look around you see a door to a conference room, a bathroom, a break room, and a door with no sign above it.
 1Desk
 The desk is a perfectly normal plain old desk.
 2Computer
 The computer is a perfectly normal plain old computer.
-When you turn the computer on all you see is popup that says "boss wants to see you" you can't close it, and nothing else on the computer seems to work.
-3LOCKED DOOR
-As you approach the door you here the faint sound of gears turning.
-The door doesn't budge when you try and move it but there also isn't a keyhole for you to unlock it.
+When you turn the computer on all you see is popup that says "Boss wants to see you!" You can't close it, and nothing else on the computer seems to work.
+3Door
+As you approach the door, you hear the faint sound of gears turning.
+The door doesn't budge when you try and move it, but there also isn't a keyhole for you to unlock it.
 As you put the key into the hole you hear a distant beep sound and when you look up the door has opened and revealed an elevator.
 
 -CONFERENCE ROOM
-The conference room has a big desk in the center for use during meetings. Aside from that, someone who seems to be your boss is sitting at the far end of the room, minding his business.
+The conference room has a big desk in the center. Aside from that, someone who seems to be your boss is sitting at the far end of the room, minding his business.
 2Boss
-As soon as you glance towards your boss, he notices you "ah hello there thank you for coming I have a job for you, I can't find my favorite pen and I was hoping you could get it for me".
-As you give your boss the pen, he takes a good look at it and says, "huh that wasn't there before well I hope you will ignore that ominous warning, anyways thank you for finding this for me your free to go on break if you want".
+As soon as you glance towards your boss, he notices you. "Ah hello there thank you for coming. I have a job for you. I can't find my favorite pen and I was hoping that you could get it for me."
+As you give your boss the pen, he takes a good look at it and says, "Huh that wasn't there before. Well, I hope you will ignore that ominous warning. Anyways, thank you for finding this for me. You're free to go on a break if you want to."
 
 -BATHROOM
 As you enter the bathroom, you notice four closed stalls along the left wall and a mirror hanging on the right.
@@ -33,7 +33,7 @@ There's nothing in here.
 1Stall Four
 There's nothing in here.
 1Key
-A normal key with.
+The key looks like a standard metal key.
 
 -BREAK ROOM
 The break room is a normal break room with a table for eating a refrigerator and a coffee maker some of your colleagues are also in the room with a small group of them talking and eating at the table and another on of your colleagues in a yellow shirt attempting to make coffee.

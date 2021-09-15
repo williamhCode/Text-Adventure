@@ -88,7 +88,7 @@ namespace Text_Adventure
             rooms_2[2].GetObject("Music Queue").SetInteractMethod(OF.MusicQueue);
             rooms_3[0].GetObject("Computer").SetInteractMethod(OF.Computer);
             rooms_3[0].GetObject("Desk").SetInteractMethod(OF.Desk);
-            rooms_3[0].GetObject("Locked Door").SetInteractMethod(OF.LockedDoor);
+            rooms_3[0].GetObject("Door").SetInteractMethod(OF.LockedDoor);
             rooms_3[1].GetObject("Boss").SetInteractMethod(OF.boss);
             rooms_3[2].GetObject("Mirror").SetInteractMethod(OF.Mirror);
             rooms_3[2].GetObject("Stall One").SetInteractMethod(OF.StallOne);
@@ -463,7 +463,7 @@ namespace Text_Adventure
                                         Console.WriteLine("There is nothing in the east.\n");
                                     if (currentRoom.east == rooms_3[5] && door == 0)
                                     {
-                                        Console.WriteLine("The door is locked.");
+                                        Console.WriteLine("The door is locked.\n");
                                     }
 
                                     else
@@ -698,7 +698,7 @@ namespace Text_Adventure
                             }
                             else
                             {
-                                if (objectName.Equals("Locked door"))
+                                if (objectName.Equals("locked door"))
                                 {
                                     if (inventory.GetObject("key") == null)
                                     {
