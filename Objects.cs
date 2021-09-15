@@ -299,11 +299,7 @@ namespace Text_Adventure
 
         public string YellowShirtCollegue(Object obj, string command, int _)
         {
-            if (command.Equals("examine"))
-            {
-                return obj.descriptions[0];
-            }
-            if (command.Equals("examine"))
+            if (command.Equals("examine") || command.Equals("talk to"))
             {
                 return obj.descriptions[0];
             }

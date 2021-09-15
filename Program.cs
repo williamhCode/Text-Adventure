@@ -97,7 +97,7 @@ namespace Text_Adventure
             rooms_3[2].GetObject("Stall Four").SetInteractMethod(OF.StallFour);
             rooms_3[2].GetObject("wall").SetInteractMethod(OF.wall);
             rooms_3[3].GetObject("Small Group").SetInteractMethod(OF.smallGroup);
-            rooms_3[3].GetObject("Yellow Shirt College").SetInteractMethod(OF.YellowShirtCollegue);
+            rooms_3[3].GetObject("Yellow Shirt Colleague").SetInteractMethod(OF.YellowShirtCollegue);
             rooms_3[4].GetObject("Box").SetInteractMethod(OF.Box);
             rooms_3[4].GetObject("Pen").SetInteractMethod(OF.Pen);
             rooms_3[5].GetObject("Exit Button").SetInteractMethod(OF.exitButton);
@@ -666,8 +666,8 @@ namespace Text_Adventure
                                 {
                                     output = currentRoom.GetObject(objectName).CallInteractMethod(command);
                                     Console.WriteLine(output + "\n");
-                                    string answer = Console.ReadLine();
-                                    if (answer.Equals("Time"))
+                                    string answer = Console.ReadLine().ToLower();
+                                    if (answer.Equals("time"))
                                     {
                                         output = currentRoom.GetObject(objectName).CallInteractMethod("correct");
                                         inventory.AddObject(currentRoom.RemoveObject("key"));
