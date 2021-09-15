@@ -184,7 +184,7 @@ namespace Text_Adventure
                 return obj.descriptions[1];
 
             }
-            else if (command.Equals("openU") )
+            else if (command.Equals("openU"))
             {
                 return obj.descriptions[2];
             }
@@ -192,18 +192,24 @@ namespace Text_Adventure
 
         }
 
-        public string boss(Object obj, string command,int _)
+        public string boss(Object obj, string command, int _)
         {
             if (command.Equals("examine") || command.Equals("talk to"))
             {
                 return obj.descriptions[0];
             }
-            
+            if (command.Equals("give"))
+            {
+                return obj.descriptions[1];
+            }
+
+
+
             return "you cannot do that";
 
         }
 
-        public string Mirror(Object obj, string command,int _)
+        public string Mirror(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {
@@ -213,7 +219,7 @@ namespace Text_Adventure
 
         }
 
-        public string StallOne(Object obj, string command,int _)
+        public string StallOne(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {
@@ -245,7 +251,7 @@ namespace Text_Adventure
 
         }
 
-        public string StallFour(Object obj, string command,int _)
+        public string StallFour(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {
@@ -255,10 +261,11 @@ namespace Text_Adventure
 
         }
 
-        public string Wall(Object obj, string command,int _)
+        public string wall(Object obj, string command, int _)
         {
-            if (command.Equals("push"))
+            if (command.Equals("press"))
             {
+
                 return obj.descriptions[0];
             }
             if (command.Equals("correct"))
@@ -280,6 +287,14 @@ namespace Text_Adventure
                 return obj.descriptions[0];
             }
             return "you cannot do that";
+        }
+        public string key(Object obj, string command, int _)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            return "you can't do that";
         }
 
         public string YellowShirtCollegue(Object obj, string command, int _)
@@ -304,6 +319,7 @@ namespace Text_Adventure
             if (command.Equals("move"))
             {
                 return obj.descriptions[1];
+
             }
             return "you cannot do that";
         }
@@ -313,28 +329,36 @@ namespace Text_Adventure
             if (command.Equals("examine") && change == 0)
             {
                 return obj.descriptions[0];
+                change=1;
             }
-            if (command.Equals("examine") && change == 1)
+           
+            if (command.Equals("examine") && change == 2)
             {
                 return obj.descriptions[2];
             }
             if (command.Equals("take"))
             {
-                change = 1;
-                return obj.descriptions[1];
+                change = 2;
+                return obj.descriptions[4];
+                
             }
-            if (command.Equals("give")&&change==1)
+            if (command.Equals("give"))
             {
-                change = 0;
+                
                 return obj.descriptions[3];
+            }
+            if (command.Equals("taker"))
+            {
+                change = 2;
+                return obj.descriptions[1];
             }
             return "you can't do that";
 
         }
 
-        public string exitButton(Object obj, string command,int _)
+        public string exitButton(Object obj, string command, int _)
         {
-            if (command.Equals("use"))
+            if (command.Equals("press"))
             {
                 return obj.descriptions[0];
             }
@@ -347,7 +371,7 @@ namespace Text_Adventure
             {
                 return obj.descriptions[0];
             }
-            if (command.Equals("use") )
+            if (command.Equals("use"))
             {
                 return obj.descriptions[1];
             }
@@ -372,7 +396,7 @@ namespace Text_Adventure
             }
             if (command.Equals("use"))
             {
-                
+
                 return obj.descriptions[1];
             }
             return "you can't do that";
@@ -391,7 +415,7 @@ namespace Text_Adventure
             {
                 return obj.descriptions[0];
             }
-            if (command.Equals("use") )
+            if (command.Equals("use"))
             {
                 return obj.descriptions[1];
 

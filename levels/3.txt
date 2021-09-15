@@ -32,6 +32,8 @@ The screen flashes red as a sad face appears on it :(.
 There's nothing in here.
 1Stall Four
 There's nothing in here.
+1key
+A normal key with.
 
 -BREAK ROOM
 The break room is a normal break room with a table for eating a refrigerator and a coffee maker some of your colleagues are also in the room with a small group of them talking and eating at the table and another on of your colleagues in a yellow shirt attempting to make coffee.
@@ -46,11 +48,12 @@ The room is a cluttered mess of janitorial supplies as well as the most random c
 2Box
 It's a perfectly normal plain old box.
 As you lift the box you see the source of the light, it turns out your bosses pen just had a small LED light on the end of it.
-4Pen
+5Pen
 It's a kind of normal plain pen.
 As you pick up the pen it begins to move in your hands as you see parts of it disintegrate until a message appears on the pen.
 It's now a very weird pen with nothing plain about it with a message that reads "get out".
 As you give your boss the pen, he takes a good look at it and says, "huh that wasn't there before well I hope you will ignore that ominous warning, anyways thank you for finding this for me your free to go on break if you want".
+You can't do that.
 
 -Elevator
 As you enter the Elevator it seems to be pretty normal but the buttons to pick floor are missing replaced with a big red exit button.
