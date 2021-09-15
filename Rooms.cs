@@ -6,7 +6,7 @@ namespace Text_Adventure
     class Room
     {
         public string name;
-        private string description;
+        public string description;
 
         public Room north;
         public Room south;

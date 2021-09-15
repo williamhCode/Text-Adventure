@@ -40,16 +40,16 @@ The device has a USB port in the middle of the screen. Perhaps you could use som
 
 -VIP ROOM
 The VIP room seems to be some kind of lounge with some couches and table. The decorations are not too fancy and looks pretty antiquated. The walls are brown with a few golden decorations. Weirdly enough, no one else besides you seems notice you. At the other side of the room, you see an elevator.
-1Elevator
-As you approach the elevator there is only one button on it that says exit and a keyhole to put a key.
+2Elevator
+As you approach the elevator, there is only a keyhole to activate it.
+The key fits perfectly into the hole. As you look up, the button has turned green and the elevator doors start to stutter and open. You walk into the elevator, now knowing what awaits you. As the elevator slowly descends to the first floor, you hear a crowd of people. When the elevator doors open you see a group of worn out and people with concerning looks on their faces. One of them rushes to you and says, "We were waiting for you, Billy. Now come with us, I'll tell you all about what happened".
 1Table
-It's a normal table but you see a note stuck to it
+It's a normal table but you see a note stuck to it.
 1Note
 As you look at the note it seems to be unreadable, but the marking on it begin to change and move. Soon it becomes legible and the note says "If you're reading this you need to leave. Something trapped you in this simulation, and there's a key under the coach. Quickly grab it and get out of here."
 1Couch
 It is a brown and plain looking couch.
-3Key
-As you reach under the couch you can feel a metal object. As you pull it out it begins to change shape and by the time you take a good look at it, it looks like an ordinary key.
-The key is not symmetrical, and looks like an ancient artifact.
-The key fits perfectly into the hole. As you look up, the button has turned green and the elevator doors start to stutter and open.
+2Key
+As you reach under the couch you can feel a metal object. As you pull it out, it starts as a flickering neon piece of object, and begins solidify into a key.
+This is a regular metal key.
 .

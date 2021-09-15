@@ -12,9 +12,26 @@ namespace Text_Adventure
             this.objects = objects;
         }
 
+        bool HasObjectName(Object obj, string name)
+        {
+            if (obj.name.ToLower().Equals(name))
+            {
+                return true;
+            }
+            string[] words = obj.name.ToLower().Split(' ');
+            foreach (string word in words)
+            {
+                if (word.Equals(name))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public string GetObjectName(string name)
         {
-            Object obj = objects.Find(x => x.name.ToLower().Contains(name.ToLower()));
+            Object obj = objects.Find(obj => HasObjectName(obj, name));
             if (obj == null)
                 return "";
             return obj.name;
