@@ -84,8 +84,16 @@ namespace Text_Adventure
             ObjectFunctions OF = new ObjectFunctions();
             rooms_2[0].GetObject("DJ").SetInteractMethod(OF.DJ);
             rooms_2[0].GetObject("VIP Door").SetInteractMethod(OF.VIPDoor);
+            rooms_2[0].GetObject("Letter Hatch").SetInteractMethod(OF.LetterHatch);
             rooms_2[1].GetObject("Gamblers").SetInteractMethod(OF.Gamblers);
+            rooms_2[1].GetObject("Shady Guy").SetInteractMethod(OF.ShadyGuy);
             rooms_2[2].GetObject("Music Queue").SetInteractMethod(OF.MusicQueue);
+            rooms_2[3].GetObject("Elevator").SetInteractMethod(OF.Elevator);
+            rooms_2[3].GetObject("Table").SetInteractMethod(OF.Table);
+            rooms_2[3].GetObject("Note").SetInteractMethod(OF.Note);
+            rooms_2[3].GetObject("Couch").SetInteractMethod(OF.Couch);
+            rooms_2[3].GetObject("Key").SetInteractMethod(OF.Key);
+
             rooms_3[0].GetObject("Computer").SetInteractMethod(OF.Computer);
             rooms_3[0].GetObject("Desk").SetInteractMethod(OF.Desk);
             rooms_3[0].GetObject("Door").SetInteractMethod(OF.LockedDoor);
@@ -101,12 +109,12 @@ namespace Text_Adventure
             rooms_3[4].GetObject("Box").SetInteractMethod(OF.Box);
             rooms_3[4].GetObject("Pen").SetInteractMethod(OF.Pen);
             rooms_3[5].GetObject("Exit Button").SetInteractMethod(OF.ExitButton);
-            rooms_3[2].GetObject("key").SetInteractMethod(OF.Key);
+            rooms_3[2].GetObject("Key").SetInteractMethod(OF._Key);
 
             // game logic variables
             Player inventory = new Player(new List<Object>());
 
-            Room currentRoom = rooms_3[0];
+            Room currentRoom = rooms_2[3];
             List<Room> visitedRooms = new List<Room>() { currentRoom };
 
             bool verbose = true;
@@ -114,14 +122,13 @@ namespace Text_Adventure
             // 0 = not talked to, 1 = talked to, 2 = music changed
             int gamblersStage = 0;
             bool USBgiven = false;
-            bool coinGiven = false;
 
             // 0 = up, 1 = down, 2 = left, 3 = right
             int[] musicQueueCode = { 0, 0, 1, 1, 2, 3, 2, 3 };
             int musicQueueIndex = 0;
             bool usingMusicQueue = false;
             bool musicQueueUnlocked = false;
-
+        
             // game functions
             void EnterRoom(Room room)
             {
@@ -155,19 +162,20 @@ namespace Text_Adventure
                 {"see", "examine"},
                 {"open", "open"},
                 {"use", "use"},
-                {"put", "use"},
+                {"put", "put"},
+                {"insert", "put"},
                 {"inv", "inventory"},
                 {"inventory", "inventory"},
                 {"talk to", "talk to"},
+                {"give", "give"},
                 {"push", "move"},
                 {"lift","move"},
+                {"take", "take"},
                 {"take","take"},
                 {"pick up", "take"},
                 {"grab","take"},
                 {"press","press" },
                 {"touch","press" },
-                {"give","give" },
-
             };
 
             var directionDict = new Dictionary<string, string>
@@ -194,13 +202,16 @@ namespace Text_Adventure
             {
                 {"in", "in"},
                 {"on", "in"},
-                {"to","to" },
+                {"to", "to"},
+                {"under", "under"},
+                {"below", "under"},
+                {"beneath", "under"},
             };
 
-            (string command, string objectName, string otherObjectName) ParseInput(string input)
+            (string command, string objectName, string preposition, string otherObjectName) ParseInput(string input)
             {
-                string command = null, objectName = null, otherObjectName = null;
-                string preposition = "";
+                string command = null, objectName = null, preposition = null, otherObjectName = null;
+                
                 char[] seperators = new char[] { ' ', ',', '.' };
                 string[] words = input.Split(seperators, StringSplitOptions.RemoveEmptyEntries);
                 int input_length = words.Length;
@@ -324,6 +335,10 @@ namespace Text_Adventure
                 {
                     objectName = objectName.ToLower();
                 }
+                if (preposition == null)
+                {
+                    preposition = "";
+                }
                 if (otherObjectName != null)
                 {
                     otherObjectName = otherObjectName.ToLower();
@@ -333,7 +348,7 @@ namespace Text_Adventure
                     otherObjectName = "";
                 }
 
-                return (command, objectName, otherObjectName);
+                return (command, objectName, preposition, otherObjectName);
             }
 
             // start game + game loop
@@ -346,7 +361,7 @@ namespace Text_Adventure
             {
                 Console.Write(">");
                 string input = Console.ReadLine().ToLower().Trim();
-                (string command, string objectName, string otherObjectName) = ParseInput(input);
+                (string command, string objectName, string preposition, string otherObjectName) = ParseInput(input);
 
                 Console.WriteLine();
                 int parameter = 0;
@@ -433,8 +448,15 @@ namespace Text_Adventure
                                         Console.WriteLine("There is nothing in the north.\n");
                                     else
                                     {
-                                        currentRoom = currentRoom.north;
-                                        EnterRoom(currentRoom);
+                                        if (currentRoom.north.name.Equals("VIP ROOM"))
+                                        {
+                                            Console.WriteLine("The room is blocked by a locked door.\n");
+                                        }
+                                        else
+                                        {
+                                            currentRoom = currentRoom.north;
+                                            EnterRoom(currentRoom);
+                                        }
                                     }
                                     break;
 
@@ -453,8 +475,15 @@ namespace Text_Adventure
                                         Console.WriteLine("There is nothing in the south.\n");
                                     else
                                     {
-                                        currentRoom = currentRoom.south;
-                                        EnterRoom(currentRoom);
+                                        if (currentRoom.south.name.Equals("DANCE FLOOR"))
+                                        {
+                                            Console.WriteLine("The room is blocked by a locked door.\n");
+                                        }
+                                        else
+                                        {
+                                            currentRoom = currentRoom.south;
+                                            EnterRoom(currentRoom);
+                                        }
                                     }
                                     break;
 
@@ -512,23 +541,13 @@ namespace Text_Adventure
                                             currentRoom.GetObject("USB Drive").SetInteractMethod(OF.USBDrive);
                                             inventory.AddObject(currentRoom.RemoveObject("USB drive"));
                                         }
-                                        USBgiven = true;
                                     }
                                     else if (gamblersStage == 2)
-                                    {
-                                        if (coinGiven == false)
-                                        {
-                                            currentRoom.GetObject("Golden Coin").SetInteractMethod(OF.GoldenCoin);
-                                            inventory.AddObject(currentRoom.RemoveObject("Golden Coin"));
-                                        }
-                                        coinGiven = true;
-                                        // gamblersStage = 3;
+                                    {  
+                                        currentRoom.GetObject("Golden Coin").SetInteractMethod(OF.GoldenCoin);
+                                        inventory.AddObject(currentRoom.RemoveObject("Golden Coin"));
+                                        gamblersStage = 3;
                                     }
-                                    else if (gamblersStage == 3)
-                                    {
-
-                                    }
-
                                 }
                                 else if (objectName.Equals("music queue"))
                                 {
@@ -552,8 +571,8 @@ namespace Text_Adventure
                                     }
                                 }
                             }
-
                             break;
+
                         case "move":
                             if (objectName == null)
                             {
@@ -588,73 +607,7 @@ namespace Text_Adventure
                                 }
                             }
                             break;
-                        case "take":
-                            if (objectName == null)
-                            {
-                                Console.WriteLine("what to take\n");
-                            }
-                            else
-                            {
 
-                                if (objectName.Equals("pen") && boxx == 1)
-                                {
-
-                                    output = currentRoom.GetObject(objectName).CallInteractMethod("taker");
-                                    inventory.AddObject(currentRoom.RemoveObject(objectName));
-                                    Console.WriteLine(output + objectName + "\n");
-                                    boxx = 0;
-                                }
-                                else
-                                {
-                                    try
-                                    {
-                                        output = currentRoom.GetObject(objectName).CallInteractMethod(command);
-                                        Console.WriteLine(output + objectName + boxx + "55\n");
-                                    }
-                                    catch (NullReferenceException e)
-                                    {
-                                        Console.WriteLine("You cannot do that.\n");
-                                    }
-                                }
-
-                            }
-                            break;
-                        case "give":
-                            if (objectName == null)
-                            {
-                                Console.WriteLine("what to give\n");
-                            }
-                            else
-                            {
-
-                                if (objectName.Equals("pen") && otherObjectName.Equals("boss"))
-                                {
-                                    output = currentRoom.GetObject("boss").CallInteractMethod(command);
-                                    Console.WriteLine(output + "\n");
-
-                                    inventory.RemoveObject("pen");
-
-                                }
-                                else if (currentRoom == rooms_2[1])
-                                {
-                                    output = currentRoom.GetObject(objectName).CallInteractMethod(command);
-                                    inventory.RemoveObject("Coin");
-                                }
-                                else
-                                {
-                                    try
-                                    {
-                                        output = currentRoom.GetObject(objectName).CallInteractMethod(command, parameter);
-                                        Console.WriteLine(output + "\n");
-                                    }
-                                    catch (NullReferenceException e)
-                                    {
-                                        Console.WriteLine("You cannot do that.\n");
-                                    }
-                                }
-
-                            }
-                            break;
                         case "press":
                             if (objectName == null)
                             {
@@ -682,8 +635,8 @@ namespace Text_Adventure
                                 }
                                 try
                                 {
-                                    //output = currentRoom.GetObject(objectName).CallInteractMethod(command);
-                                    //Console.WriteLine(output + "\n");
+                                    output = currentRoom.GetObject(objectName).CallInteractMethod(command);
+                                    Console.WriteLine(output + "\n");
                                 }
                                 catch (NullReferenceException e)
                                 {
@@ -691,6 +644,7 @@ namespace Text_Adventure
                                 }
                             }
                             break;
+
                         case "open":
                             if (objectName == null)
                             {
@@ -725,6 +679,7 @@ namespace Text_Adventure
                             break;
 
                         case "use":
+                        case "put":
                             if (objectName == null)
                             {
                                 Console.WriteLine("What to use?\n");
@@ -742,10 +697,23 @@ namespace Text_Adventure
                                         usingMusicQueue = true;
                                     }
                                 }
-                                if (objectName.Equals("usb drive") && otherObjectName.Equals("music queue") && musicQueueUnlocked)
+                                bool driveUsed = false;
+                                if (objectName.Equals("usb drive") && preposition.Equals("in") && otherObjectName.Equals("music queue") && musicQueueUnlocked)
                                 {
                                     parameter = 1;
-                                    gamblersStage = 2;
+                                    if (gamblersStage == 1)
+                                    {
+                                        gamblersStage = 2;
+                                    }
+                                    driveUsed = true;
+                                    musicQueueUnlocked = false;
+                                    musicQueueIndex = 0;
+                                }
+                                bool ticketUsed = false;
+                                if (objectName.Equals("golden ticket") && preposition.Equals("in") && otherObjectName.Equals("letter hatch"))
+                                {
+                                    parameter = 1;
+                                    ticketUsed = true;
                                 }
                                 try
                                 {
@@ -764,13 +732,93 @@ namespace Text_Adventure
                                         Console.WriteLine("You cannot do that.\n");
                                     }
                                 }
-                                if (objectName.Equals("usb drive") && otherObjectName.Equals("music queue") && musicQueueUnlocked)
+                                if (driveUsed)
                                 {
                                     inventory.RemoveObject("usb drive");
+                                }
+                                if (ticketUsed)
+                                {
+                                    inventory.RemoveObject("golden ticket");
+                                    currentRoom = currentRoom.north;
+                                    EnterRoom(currentRoom);
                                 }
                             }
                             break;
 
+                        case "give":
+                            if (objectName == null)
+                            {
+                                Console.WriteLine("What to use?\n");
+                            }
+                            else
+                            {   
+                                bool coinUsed = false;
+                                if (objectName.Equals("golden coin") && preposition.Equals("to") && otherObjectName.Equals("shady guy"))
+                                {
+                                    parameter = 1;
+                                    coinUsed = true;
+                                    currentRoom.GetObject("Golden Ticket").SetInteractMethod(OF.GoldenTicket);
+                                    inventory.AddObject(currentRoom.RemoveObject("Golden Ticket"));
+                                }
+                                else if (objectName.Equals("pen") && otherObjectName.Equals("boss"))
+                                {   
+                                    parameter = 1;
+                                    inventory.RemoveObject("pen");
+                                }
+                                try
+                                {
+                                    output = inventory.GetObject(objectName).CallInteractMethod(command, parameter);
+                                    Console.WriteLine(output + "\n");
+                                }
+                                catch (NullReferenceException e)
+                                {
+                                    Console.WriteLine("You cannot do that.\n");
+                                }
+                                if (coinUsed)
+                                {
+                                    inventory.RemoveObject("golden coin");
+                                    currentRoom.RemoveObject("shady guy");
+                                }
+                            }
+                            break;
+
+                        case "take":
+                            if (objectName == null)
+                            {
+                                Console.WriteLine("What to take?\n");
+                            }
+                            else
+                            {
+                                bool keyTaken = false;
+                                if (currentRoom.GetObject("Key")!= null && objectName.Equals("key") && preposition.Equals("under") && otherObjectName.Equals("couch"))
+                                {
+                                    keyTaken = true;
+                                    parameter = 1;
+                                    currentRoom.GetObject("Key").SetInteractMethod(OF.Key);
+                                }
+                                if (objectName.Equals("pen") && boxx == 1)
+                                {
+
+                                    output = currentRoom.GetObject(objectName).CallInteractMethod("taker");
+                                    inventory.AddObject(currentRoom.RemoveObject(objectName));
+                                    Console.WriteLine(output + objectName + "\n");
+                                    boxx = 0;
+                                }
+                                try
+                                {
+                                    output = currentRoom.GetObject(objectName).CallInteractMethod(command, parameter);
+                                    Console.WriteLine(output + "\n");
+                                }
+                                catch (NullReferenceException e)
+                                {
+                                    Console.WriteLine("You cannot do that.\n");
+                                }
+                                if (keyTaken)
+                                {
+                                    inventory.AddObject(currentRoom.RemoveObject("key"));
+                                }
+                            }
+                            break;
 
                         case "verbose":
                             verbose = true;

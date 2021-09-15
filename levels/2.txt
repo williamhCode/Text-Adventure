@@ -2,11 +2,11 @@
 As the elevator opens and slows down, you start to hear music, and your eyes are suddenly assaulted by a wave of neon colors and flashing lights. As you exit the elevator you notice throngs of people dancing and enjoying themselves. This place was definitely not here before. You see a DJ up on stage and two groups of people in the corners of the room, as well as a door with a VIP written in golden letters above it.
 1DJ
 "What sorry I cant hear you. If you want to request a song we have a machine for that over there", the DJ says this as he points towards the left corner.
-4Vip Door
+2Vip Door
 It is a solid looking door with the letters VIP above. There also seems to be a letter hatch on the door.
 The door doesn't budge.
-You don't have anything that would fit in the hatch.
-As you put the golden ticket into the hatch you hear the sound of gears whirring as the door opens.
+1Letter Hatch
+The letter hatch is surrounded by golden foil and looks rather thin. The size of the hatch is so small that only a ticket would seem to fit.
 
 -RIGHT CORNER
 As you examine the right corner of the room you notice a shady looking guy leaning against the far wall with most of his body covered in a black cloak. You also see a small group of gamblers sitting around a table playing some sort of card game.
@@ -14,14 +14,18 @@ As you examine the right corner of the room you notice a shady looking guy leani
 As you approach the card players, you realize that they are gambling. They have a collection of poker chips on the table. You can also begin to hear them over the music: "do you have any full houses" "uno" "you fool you've activated my trap card". You have no idea what game there playing. But you also notice one of the gamblers flip a golden coin into the air.
 "You want this little coin thing, huh?", one of the gamblers says, "Ok you can have it but I want something first. The music here sucks." "Here", one of the other players says as he hands you a USB drive, "The music we want is on here, so see if you can find a way to play it".
 "You really kept us waiting huh?" the gambler says with a smirk. "Well a deal's a deal. Here's one golden coin for you". The gambler with the coin flips it one more time as you see it glitch, vanish and suddenly appear in your hand.
+"Sorry, we don't have any more coins for you", says the gambler. They proceeds to playing with their collection of poker chips.
 2USB drive
 This USB drive is painted black, has a dice pattern carved on its side.
-As soon as you put the USB in the screen, it disapears and a new song starts being played.
-1Golden Coin
-The golden coin is roughly the size of a poker chip. The coin occasionally flashes purple and white as it glitches out. Hopefully that shady guy wont care.
-2Shady Guy
-The mysterious figure notices your approach as a slight smirk begins to form on his face, "Why, it's my favorite customer. What do you wish to buy today?" The man open up his cloak to reveal a collection of VIP tickets, "One golden ticket for one golden coin. You know the rules."
+As soon as you put the USB in the screen, it disappears and a new song starts being played.
+2Golden Coin
+The golden coin is roughly the size of a poker chip. The coin occasionally flashes purple and white as it glitches out.
 "Thank you for your patronage my friend", the shady man says as he hands you one of his tickets, "Now I should get going, I have a friend of mine who needs help with a zombie problem", the man says as he disappear into the crowd of dancing people.
+1Shady Guy
+The mysterious figure notices your approach as a slight smirk begins to form on his face, "Why, it's my favorite customer. What do you wish to buy today?" The man open up his cloak to reveal a collection of VIP tickets, "One golden ticket for one golden coin. You know the rules."
+2Golden Ticket
+The ticket is coevered with authentic gold foil, shining brightly with the words VIP written on it. You quickly put it back into your pocket before people take notice of it.
+You put the golden ticket into the letter hatch, and you hear the sound of gears whirring as the door opens. As soon as you walk in to the VIP room, the door slams shut behind you and the music from the dance floor suddenly goes quiet.
 
 -LEFT CORNER
 The left corner of the room seems to be the same as the main floor, with groups of people dancing. The only other thing you notice is a music queue device on the wall.
@@ -35,16 +39,17 @@ The device has a screen in the middle and black bezels encasing the edge of the 
 The device has a USB port in the middle of the screen. Perhaps you could use something that fits.
 
 -VIP ROOM
-As you enter the room, the door slams shut behind you and the music from the dance floor suddenly goes quiet, the room you're in looks to be some kind of lounge with some couches a table and more weirdly, no one else besides you seems to be with you. You also notice an elevator on the opposite side of the room from where you enter.
-4Elevator
-As you approach the elevator there is only one button on it that says exit and a spot to put a key.
-Nothing happens.
-The key fits perfectly and as you look up the button has turned green as the elevator doors start to stutter and open.
+The VIP room seems to be some kind of lounge with some couches and table. The decorations are not too fancy and looks pretty antiquated. The walls are brown with a few golden decorations. Weirdly enough, no one else besides you seems notice you. At the other side of the room, you see an elevator.
+1Elevator
+As you approach the elevator there is only one button on it that says exit and a keyhole to put a key.
 1Table
 It's a normal table but you see a note stuck to it
 1Note
-As you pick up the note it seems to be unreadable, but the marking on it begin to change and move. Soon it becomes legible and the note says "If you're reading this you need to leave. Something trapped you in this simulation, and there's a key under the coach. Quickly grab it and get out of here."
-2Couch
-It's a normal couch.
+As you look at the note it seems to be unreadable, but the marking on it begin to change and move. Soon it becomes legible and the note says "If you're reading this you need to leave. Something trapped you in this simulation, and there's a key under the coach. Quickly grab it and get out of here."
+1Couch
+It is a brown and plain looking couch.
+3Key
 As you reach under the couch you can feel a metal object. As you pull it out it begins to change shape and by the time you take a good look at it, it looks like an ordinary key.
+The key is not symmetrical, and looks like an ancient artifact.
+The key fits perfectly into the hole. As you look up, the button has turned green and the elevator doors start to stutter and open.
 .
