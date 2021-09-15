@@ -170,8 +170,6 @@ namespace Text_Adventure
                 return obj.descriptions[1];
             }
             return "you cannot do that";
-
-
         }
 
         public string LockedDoor(Object obj, string command, int _)
@@ -196,7 +194,7 @@ namespace Text_Adventure
 
         public string boss(Object obj, string command,int _)
         {
-            if (command.Equals("examine") )
+            if (command.Equals("examine") || command.Equals("talk to"))
             {
                 return obj.descriptions[0];
             }

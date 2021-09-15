@@ -91,13 +91,13 @@ namespace Text_Adventure
             rooms_3[0].GetObject("Locked Door").SetInteractMethod(OF.LockedDoor);
             rooms_3[1].GetObject("Boss").SetInteractMethod(OF.boss);
             rooms_3[2].GetObject("Mirror").SetInteractMethod(OF.Mirror);
-            rooms_3[2].GetObject("Stall one").SetInteractMethod(OF.StallOne);
-            rooms_3[2].GetObject("Stall two").SetInteractMethod(OF.StallTwo);
-            rooms_3[2].GetObject("Stall three").SetInteractMethod(OF.StallThree);
-            rooms_3[2].GetObject("Stall four").SetInteractMethod(OF.StallFour);
+            rooms_3[2].GetObject("Stall One").SetInteractMethod(OF.StallOne);
+            rooms_3[2].GetObject("Stall Two").SetInteractMethod(OF.StallTwo);
+            rooms_3[2].GetObject("Stall Three").SetInteractMethod(OF.StallThree);
+            rooms_3[2].GetObject("Stall Four").SetInteractMethod(OF.StallFour);
             rooms_3[2].GetObject("Wall").SetInteractMethod(OF.Wall);
             rooms_3[3].GetObject("Small Group").SetInteractMethod(OF.smallGroup);
-            rooms_3[3].GetObject("Collegue in a yellow shirt").SetInteractMethod(OF.YellowShirtCollegue);
+            rooms_3[3].GetObject("Yellow Shirt College").SetInteractMethod(OF.YellowShirtCollegue);
             rooms_3[4].GetObject("Box").SetInteractMethod(OF.Box);
             rooms_3[4].GetObject("Pen").SetInteractMethod(OF.Pen);
             rooms_3[5].GetObject("Exit Button").SetInteractMethod(OF.exitButton);
@@ -158,14 +158,13 @@ namespace Text_Adventure
                 {"inv", "inventory"},
                 {"inventory", "inventory"},
                 {"talk to", "talk to"},
-                {"move","move"},
+                {"push", "move"},
                 {"lift","move"},
                 {"take","take"},
                 {"pick up", "take"},
                 {"grab","take"},
-                {"push","push" },
-                {"press","push" },
-                {"touch","push" },
+                {"press","press" },
+                {"touch","press" },
                 {"give","give" },
 
             };
