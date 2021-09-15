@@ -236,6 +236,211 @@ namespace Text_Adventure
             return "You cannot do that.";
         }
 
-        
+        public string Desk(Object obj, string command, int _)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            return "you cannot do that";
+        }
+
+        public string Computer(Object obj, string command, int _)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            else if (command.Equals("use"))
+            {
+                return obj.descriptions[1];
+            }
+            return "you cannot do that";
+        }
+
+        public string LockedDoor(Object obj, string command, int _)
+        {
+
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            else if (command.Equals("openL"))
+            {
+                return obj.descriptions[1];
+            }
+            else if (command.Equals("openU"))
+            {
+                return obj.descriptions[2];
+            }
+            return "you cannot do that";
+
+        }
+
+        public string Boss(Object obj, string command, int _)
+        {
+            if (command.Equals("examine") || command.Equals("talk to"))
+            {
+                return obj.descriptions[0];
+            }
+            if (command.Equals("give"))
+            {
+                return obj.descriptions[1];
+            }
+            return "you cannot do that";
+        }
+
+        public string Mirror(Object obj, string command, int _)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            return "you cannot do that";
+
+        }
+
+        public string StallOne(Object obj, string command, int _)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            return "you cannot do that";
+
+
+        }
+
+        public string StallTwo(Object obj, string command, int _)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+
+            }
+            return "you cannot do that";
+
+        }
+
+        public string StallThree(Object obj, string command, int _)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            return "you cannot do that";
+
+        }
+
+        public string StallFour(Object obj, string command, int _)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            return "you cannot do that";
+
+        }
+
+        public string Wall(Object obj, string command, int _)
+        {
+            if (command.Equals("press"))
+            {
+
+                return obj.descriptions[0];
+            }
+            if (command.Equals("correct"))
+            {
+                return obj.descriptions[1];
+
+            }
+            if (command.Equals("wrong"))
+            {
+                return obj.descriptions[2];
+            }
+            return "you cannot do that";
+        }
+
+        public string SmallGroup(Object obj, string command, int _)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            return "you cannot do that";
+        }
+
+        public string _Key(Object obj, string command, int _)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            return "you can't do that";
+        }
+
+        public string YellowShirtCollegue(Object obj, string command, int _)
+        {
+            if (command.Equals("examine") || command.Equals("talk to"))
+            {
+                return obj.descriptions[0];
+            }
+            return "you cannot do that";
+        }
+
+        public string Box(Object obj, string command, int _)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            if (command.Equals("move"))
+            {
+                return obj.descriptions[1];
+
+            }
+            return "you cannot do that";
+        }
+
+        public string Pen(Object obj, string command, int change = 0)
+        {
+            if (command.Equals("examine") && change == 0)
+            {
+                return obj.descriptions[0];
+                change=1;
+            }
+           
+            if (command.Equals("examine") && change == 2)
+            {
+                return obj.descriptions[2];
+            }
+            if (command.Equals("take"))
+            {
+                change = 2;
+                return obj.descriptions[4];
+                
+            }
+            if (command.Equals("give"))
+            {
+                
+                return obj.descriptions[3];
+            }
+            if (command.Equals("taker"))
+            {
+                change = 2;
+                return obj.descriptions[1];
+            }
+            return "you can't do that";
+
+        }
+
+        public string ExitButton(Object obj, string command, int _)
+        {
+            if (command.Equals("press"))
+            {
+                return obj.descriptions[0];
+            }
+            return "you can't do that";
+        }
     }
 }
