@@ -274,7 +274,6 @@ namespace Text_Adventure
                 return obj.descriptions[2];
             }
             return "you cannot do that";
-
         }
 
         public string Boss(Object obj, string command, int _)
@@ -407,7 +406,6 @@ namespace Text_Adventure
             if (command.Equals("examine") && change == 0)
             {
                 return obj.descriptions[0];
-                change=1;
             }
            
             if (command.Equals("examine") && change == 2)
