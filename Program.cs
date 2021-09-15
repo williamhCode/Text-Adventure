@@ -89,19 +89,19 @@ namespace Text_Adventure
             rooms_3[0].GetObject("Computer").SetInteractMethod(OF.Computer);
             rooms_3[0].GetObject("Desk").SetInteractMethod(OF.Desk);
             rooms_3[0].GetObject("Door").SetInteractMethod(OF.LockedDoor);
-            rooms_3[1].GetObject("Boss").SetInteractMethod(OF.boss);
+            rooms_3[1].GetObject("Boss").SetInteractMethod(OF.Boss);
             rooms_3[2].GetObject("Mirror").SetInteractMethod(OF.Mirror);
             rooms_3[2].GetObject("Stall One").SetInteractMethod(OF.StallOne);
             rooms_3[2].GetObject("Stall Two").SetInteractMethod(OF.StallTwo);
             rooms_3[2].GetObject("Stall Three").SetInteractMethod(OF.StallThree);
             rooms_3[2].GetObject("Stall Four").SetInteractMethod(OF.StallFour);
-            rooms_3[2].GetObject("wall").SetInteractMethod(OF.wall);
-            rooms_3[3].GetObject("Small Group").SetInteractMethod(OF.smallGroup);
+            rooms_3[2].GetObject("wall").SetInteractMethod(OF.Wall);
+            rooms_3[3].GetObject("Small Group").SetInteractMethod(OF.SmallGroup);
             rooms_3[3].GetObject("Yellow Shirt Colleague").SetInteractMethod(OF.YellowShirtCollegue);
             rooms_3[4].GetObject("Box").SetInteractMethod(OF.Box);
             rooms_3[4].GetObject("Pen").SetInteractMethod(OF.Pen);
-            rooms_3[5].GetObject("Exit Button").SetInteractMethod(OF.exitButton);
-            rooms_3[2].GetObject("key").SetInteractMethod(OF.key);
+            rooms_3[5].GetObject("Exit Button").SetInteractMethod(OF.ExitButton);
+            rooms_3[2].GetObject("key").SetInteractMethod(OF.Key);
 
             // game logic variables
             Player inventory = new Player(new List<Object>());
