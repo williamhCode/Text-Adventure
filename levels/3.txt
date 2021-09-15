@@ -5,7 +5,7 @@ The desk is a perfectly normal plain old desk.
 2Computer
 The computer is a perfectly normal plain old computer.
 When you turn the computer on all you see is popup that says "boss wants to see you" you can't close it, and nothing else on the computer seems to work.
-2LOCKED DOOR
+2Locked door
 As you approach the door you here the faint sound of gears turning.
 The door doesn't budge when you try and move it but there also isn't a keyhole for you to unlock it.
 As you put the key into the hole you hear a distant beep sound and when you look up the door has opened and revealed an elevator.
@@ -16,7 +16,7 @@ The conference room has a big desk in the center for use during meetings. Aside 
 As soon as you glance towards your boss, he notices you "ah hello there thank you for coming I have a job for you, I can't find my favorite pen and I was hoping you could get it for me".
 As you give your boss the pen, he takes a good look at it and says, "huh that wasn't there before well I hope you will ignore that ominous warning, anyways thank you for finding this for me your free to go on break if you want".
 1DeskB
-It�s a perfectly normal plain old desk.
+It's a perfectly normal plain old desk.
 
 -BATHROOM
 As you enter the bathroom you notice four closed stalls along the wall and a mirror.
@@ -24,7 +24,7 @@ As you enter the bathroom you notice four closed stalls along the wall and a mir
 As you look into the mirror it seems normal, but you realize the second stall is open and has button on the back wall of the stall which isn't there when you turn around.
 1Stallone
 There's nothing in here.
-3Stalltwo
+3Stall Two
 As you open the stall your vision goes blurry for a second but besides that nothing weird sems to happen
 3Wall
 When you press the spot in the wall where the button should be the Stall starts to move and shake as computer forms in the wall, on the computer there is some text that says 'This thing devours all things; Birds, beasts, trees, flowers; Gnaws iron, bites steel; grinds hard stones to meal; Slays kings, ruins towns and beats mountains into the ground" under that is a text box and a keyboard to put in your answer.(answer Time)
@@ -35,12 +35,11 @@ There's nothing in here.
 1StallFour
 There's nothing in here.
 
-
 -BREAK ROOM
 The break room is a normal break room with a table for eating a refrigerator and a coffee maker some of your colleagues are also in the room with a small group of them talking and eating at the table and another on of your colleagues in a yellow shirt attempting to make coffee.
-1SmallGroup
+1SmallG roup
 As you approach the small group, they seem to not notice your presence and when you try to get their attention they act as if you're not even there. 
-2Yellow Shirt College
+2Yellow Shirt Colleague
 Your colleague seems to be muttering to herself you can't hear much but you catch her saying 'janitors closet pen Bathroom key broken mirror broken pen no windows" she keeps repeating this.
 Your colleague ignores you completely.
 
