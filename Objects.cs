@@ -80,7 +80,7 @@ namespace Text_Adventure
                 {
                     return obj.descriptions[2];
                 }
-                
+
             }
             return "You cannot do that.";
         }
@@ -119,19 +119,19 @@ namespace Text_Adventure
                 {
                     return obj.descriptions[0];
                 }
-                else if(command.Equals("use"))
+                else if (command.Equals("use"))
                 {
                     return obj.descriptions[1];
                 }
-                else if(command.Equals("incorrect"))
+                else if (command.Equals("incorrect"))
                 {
                     return obj.descriptions[2];
                 }
-                else if(command.Equals("correct"))
+                else if (command.Equals("correct"))
                 {
                     return obj.descriptions[3];
                 }
-                else if(command.Equals("unlocked"))
+                else if (command.Equals("unlocked"))
                 {
                     return obj.descriptions[4];
                 }
@@ -150,7 +150,7 @@ namespace Text_Adventure
             return "You cannot do that.";
         }
 
-        public string Desk(Object obj, string command, bool _)
+        public string Desk(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {
@@ -159,7 +159,7 @@ namespace Text_Adventure
             return "you cannot do that";
         }
 
-        public string Computer(Object obj, string command, bool _)
+        public string Computer(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {
@@ -170,49 +170,45 @@ namespace Text_Adventure
                 return obj.descriptions[1];
             }
             return "you cannot do that";
-
-
         }
 
-        public string LockedDoor(Object obj, string command, bool locked = true)
+        public string LockedDoor(Object obj, string command, int _)
         {
-            if (key == true)
-            {
-                locked = false;
-            }
+
             if (command.Equals("examine"))
             {
                 return obj.descriptions[0];
             }
-            else if (command.Equals("use") && locked == true)
+            else if (command.Equals("openL"))
             {
                 return obj.descriptions[1];
-
             }
-            else if (command.Equals("use") && locked == false)
+            else if (command.Equals("openU"))
             {
-                key = false;
                 return obj.descriptions[2];
             }
             return "you cannot do that";
 
         }
 
-        public string boss(Object obj, string command)
+        public string boss(Object obj, string command, int _)
         {
-            if (command.Equals("examine") && pen == false)
+            if (command.Equals("examine") || command.Equals("talk to"))
             {
                 return obj.descriptions[0];
             }
-            if (command.Equals("examine") && pen == true)
+            if (command.Equals("give"))
             {
                 return obj.descriptions[1];
             }
+
+
+
             return "you cannot do that";
 
         }
 
-        public string Mirror(Object obj, string command)
+        public string Mirror(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {
@@ -222,7 +218,7 @@ namespace Text_Adventure
 
         }
 
-        public string StallOne(Object obj, string command)
+        public string StallOne(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {
@@ -233,7 +229,7 @@ namespace Text_Adventure
 
         }
 
-        public string StallTwo(Object obj, string command)
+        public string StallTwo(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {
@@ -244,7 +240,7 @@ namespace Text_Adventure
 
         }
 
-        public string StallThree(Object obj, string command)
+        public string StallThree(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {
@@ -254,7 +250,7 @@ namespace Text_Adventure
 
         }
 
-        public string StallFour(Object obj, string command)
+        public string StallFour(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {
@@ -264,20 +260,26 @@ namespace Text_Adventure
 
         }
 
-        public string Wall(Object obj, string command)
+        public string wall(Object obj, string command, int _)
         {
-            if (command.Equals("examine"))
+            if (command.Equals("press"))
             {
+
                 return obj.descriptions[0];
             }
-            if (command.Equals("use"))
+            if (command.Equals("correct"))
+            {
+                return obj.descriptions[1];
+
+            }
+            if (command.Equals("wrong"))
             {
                 return obj.descriptions[2];
             }
             return "you cannot do that";
         }
 
-        public string smallGroup(Object obj, string command)
+        public string smallGroup(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {
@@ -285,86 +287,80 @@ namespace Text_Adventure
             }
             return "you cannot do that";
         }
-
-        public string yellowShirtCollegue(Object obj, string command)
+        public string key(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {
                 return obj.descriptions[0];
             }
-            if (command.Equals("examine"))
+            return "you can't do that";
+        }
+
+        public string YellowShirtCollegue(Object obj, string command, int _)
+        {
+            if (command.Equals("examine") || command.Equals("talk to"))
             {
                 return obj.descriptions[0];
             }
             return "you cannot do that";
         }
 
-        public string box(Object obj, string command)
+        public string Box(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {
                 return obj.descriptions[0];
             }
-            if (command.Equals("examine"))
+            if (command.Equals("move"))
             {
-                return obj.descriptions[0];
+                return obj.descriptions[1];
+
             }
             return "you cannot do that";
         }
 
-        public string pen(Object obj, string command, bool change = false)
+        public string Pen(Object obj, string command, int change = 0)
         {
-            if (command.Equals("examine") && change == false)
+            if (command.Equals("examine") && change == 0)
             {
                 return obj.descriptions[0];
+                change=1;
             }
-            if (command.Equals("examine") && change == true)
+           
+            if (command.Equals("examine") && change == 2)
             {
                 return obj.descriptions[2];
             }
-            if (command.Equals("use"))
+            if (command.Equals("take"))
             {
-                pen = true;
-                change = true;
+                change = 2;
+                return obj.descriptions[4];
+                
+            }
+            if (command.Equals("give"))
+            {
+                
+                return obj.descriptions[3];
+            }
+            if (command.Equals("taker"))
+            {
+                change = 2;
                 return obj.descriptions[1];
             }
             return "you can't do that";
 
         }
 
-        public string exitButton(Object obj, string command)
+        public string exitButton(Object obj, string command, int _)
         {
-            if (command.Equals("use"))
+            if (command.Equals("press"))
             {
                 return obj.descriptions[0];
             }
             return "you can't do that";
         }
 
-        public string shadyGuy(Object obj, string command)
-        {
-            if (command.Equals("examine"))
-            {
-                return obj.descriptions[0];
-            }
-            if (command.Equals("use") && coin = true)
-            {
-                return obj.descriptions[1];
-            }
-            return "you can't do that";
-
-        }
-
-        public string table(Object obj,string command)
-        {
-            if (command.Equals("examine"))
-            {
-                return obj.descriptions[0];
-            }
-            return "you can't do that";
-        }
-        
-        public string couch(Object obj, string command)
+        public string shadyGuy(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {
@@ -372,12 +368,35 @@ namespace Text_Adventure
             }
             if (command.Equals("use"))
             {
-                key = true;
+                return obj.descriptions[1];
+            }
+            return "you can't do that";
+
+        }
+
+        public string table(Object obj, string command, int _)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            return "you can't do that";
+        }
+
+        public string couch(Object obj, string command, int _)
+        {
+            if (command.Equals("examine"))
+            {
+                return obj.descriptions[0];
+            }
+            if (command.Equals("use"))
+            {
+
                 return obj.descriptions[1];
             }
             return "you can't do that";
         }
-        public string note(Object obj,string command)
+        public string note(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {
@@ -385,18 +404,18 @@ namespace Text_Adventure
             }
             return "you can't do that";
         }
-        public string elavator(Object obj, string command)
+        public string elavator(Object obj, string command, int _)
         {
             if (command.Equals("examine"))
             {
                 return obj.descriptions[0];
             }
-            if (command.Equals("use") && key == false)
+            if (command.Equals("use"))
             {
                 return obj.descriptions[1];
 
             }
-            if (command.Equals("use") && key = true)
+            if (command.Equals("use"))
             {
                 return obj.descriptions[2];
             }
