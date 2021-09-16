@@ -213,7 +213,7 @@ namespace Text_Adventure
                 {"with", "with"},
             };
 
-            (string command, string objectName, string preposition, string otherObjectName) ParseInput(string input)
+            (string command, string objectName, string preposition, string otherObjectName, int input_length) ParseInput(string input)
             {
                 string command = null, objectName = null, preposition = null, otherObjectName = null;
 
@@ -364,7 +364,7 @@ namespace Text_Adventure
                     otherObjectName = "";
                 }
 
-                return (command, objectName, preposition, otherObjectName);
+                return (command, objectName, preposition, otherObjectName, input_length);
             }
 
             // start game + game loop
@@ -376,7 +376,7 @@ namespace Text_Adventure
             {
                 Console.Write(">");
                 string input = Console.ReadLine().ToLower().Trim();
-                (string command, string objectName, string preposition, string otherObjectName) = ParseInput(input);
+                (string command, string objectName, string preposition, string otherObjectName, int input_length) = ParseInput(input);
 
                 Console.WriteLine();
                 int parameter = 0;
@@ -452,26 +452,40 @@ namespace Text_Adventure
                     switch (command)
                     {
                         case "help":
-                            output = 
-                            "look/l: look around the room\n" +
-                            "go (n/w/s/e): move between rooms\n" +
-                            "inventory/inv: check your inventory\n" +
-                            "examine/x: inspect objects/people\n" +
-                            "lift/push: move objects\n" +
-                            "press: press things e.g. a button\n" + 
-                            "open (with): open things, sometimes opening with objects\n" +
-                            "use: use things\n" +
-                            "give (to): give things to people\n" +
-                            "take: take objects from surrounding\n" +
-                            "-there are alternatives to many commands so try things around\n" +
-                            "verbose: gives long descriptions of rooms before you enter\n" +
-                            "brief: gives long descriptions only the first time you enter a room\n";
-                            Console.WriteLine(output);
+                            if (input_length > 1)
+                            {
+                                Console.WriteLine("Do you mean \"help?\"\n");
+                            }
+                            else
+                            {
+                                output = 
+                                "look/l: look around the room\n" +
+                                "go (n/w/s/e): move between rooms\n" +
+                                "inventory/inv: check your inventory\n" +
+                                "examine/x: inspect objects/people\n" +
+                                "lift/push: move objects\n" +
+                                "press: press things e.g. a button\n" + 
+                                "open (with): open things, sometimes opening with objects\n" +
+                                "use: use things\n" +
+                                "give (to): give things to people\n" +
+                                "take: take objects from surrounding\n" +
+                                "-there are alternatives to many commands so try things around\n" +
+                                "verbose: gives long descriptions of rooms before you enter\n" +
+                                "brief: gives long descriptions only the first time you enter a room\n";
+                                Console.WriteLine(output);
+                            }
                             break;
 
                         case "look":
                         case "l":
-                            Console.WriteLine(currentRoom + "\n");
+                            if (input_length > 1)
+                            {
+                                Console.WriteLine("Do you mean \"look?\"\n");
+                            }
+                            else
+                            {
+                                Console.WriteLine(currentRoom + "\n");
+                            }
                             break;
 
                         case "go":
