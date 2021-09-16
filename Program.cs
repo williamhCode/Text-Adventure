@@ -221,6 +221,8 @@ namespace Text_Adventure
                 string[] words = input.Split(seperators, StringSplitOptions.RemoveEmptyEntries);
                 int input_length = words.Length;
 
+                bool prepositionChecked = false;
+
                 // 0 = verb, 1 = noun, 2 = ??
                 int stage = 0;
                 int index = 0;
@@ -301,6 +303,7 @@ namespace Text_Adventure
                     else if (stage == 2)
                     {
                         prepositionDict.TryGetValue(words[index], out preposition);
+                        prepositionChecked = true;
                     }
                     else if (stage == 3)
                     {
@@ -342,7 +345,15 @@ namespace Text_Adventure
                 }
                 if (preposition == null)
                 {
+                    if (prepositionChecked)
+                    {
+                        preposition = "INVALID";
+                    }
+                    else
+                    {
+                        
                     preposition = "";
+                    }
                 }
                 if (otherObjectName != null)
                 {
@@ -371,7 +382,12 @@ namespace Text_Adventure
                 int parameter = 0;
                 string output;
 
-                if (usingMusicQueue)
+                if (command != null && objectName != null && preposition.Equals("INVALID"))
+                {
+                    Console.WriteLine("I understood up to the point that you want {0} {1}.\n", command, objectName);
+                }
+
+                else if (usingMusicQueue)
                 {
                     int codeAnswer = musicQueueCode[musicQueueIndex];
                     int inputedAnswer = 0;
@@ -430,11 +446,27 @@ namespace Text_Adventure
                         usingMusicQueue = false;
                     }
                 }
+                
                 else
                 {
                     switch (command)
                     {
                         case "help":
+                            output = 
+                            "look/l: look around the room\n" +
+                            "go (n/w/s/e): move between rooms\n" +
+                            "inventory/inv: check your inventory\n" +
+                            "examine/x: inspect objects/people\n" +
+                            "lift/push: move objects\n" +
+                            "press: press things e.g. a button\n" + 
+                            "open (with): open things, sometimes opening with objects\n" +
+                            "use: use things\n" +
+                            "give (to): give things to people\n" +
+                            "take: take objects from surrounding\n" +
+                            "-there are alternatives to many commands so try things around\n" +
+                            "verbose: gives long descriptions of rooms before you enter\n" +
+                            "brief: gives long descriptions only the first time you enter a room\n";
+                            Console.WriteLine(output);
                             break;
 
                         case "look":
@@ -777,6 +809,7 @@ namespace Text_Adventure
                                     coinUsed = true;
                                     currentRoom.GetObject("Golden Ticket").SetInteractMethod(OF.GoldenTicket);
                                     inventory.AddObject(currentRoom.RemoveObject("Golden Ticket"));
+                                    currentRoom.description = "As you examine the right corner of the room you see a small group of gamblers sitting around a table playing some sort of card game.";
                                 }
                                 bool penGiven = false;
                                 if (objectName.Equals("pen") && preposition.Equals("to") && otherObjectName.Equals("boss"))
