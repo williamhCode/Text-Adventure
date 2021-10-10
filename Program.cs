@@ -14,8 +14,6 @@ namespace Text_Adventure
             List<Room> ReadFloorLevel(string[] file_lines)
             {
                 List<Room> rooms = new List<Room>();
-                // TODO test
-                //nice
 
                 bool reading_room = false;
                 int description_length = 0;
