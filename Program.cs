@@ -127,7 +127,7 @@ namespace Text_Adventure
             int musicQueueIndex = 0;
             bool usingMusicQueue = false;
             bool musicQueueUnlocked = false;
-            
+
             bool boxMoved = false;
             bool doorLocked = true;
             bool penTaken = false;
@@ -351,8 +351,8 @@ namespace Text_Adventure
                     }
                     else
                     {
-                        
-                    preposition = "";
+
+                        preposition = "";
                     }
                 }
                 if (otherObjectName != null)
@@ -446,7 +446,7 @@ namespace Text_Adventure
                         usingMusicQueue = false;
                     }
                 }
-                
+
                 else
                 {
                     switch (command)
@@ -458,13 +458,13 @@ namespace Text_Adventure
                             }
                             else
                             {
-                                output = 
+                                output =
                                 "look/l: look around the room\n" +
                                 "go (n/w/s/e): move between rooms\n" +
                                 "inventory/inv: check your inventory\n" +
                                 "examine/x: inspect objects/people\n" +
                                 "lift/push: move objects\n" +
-                                "press: press things e.g. a button\n" + 
+                                "press: press things e.g. a button\n" +
                                 "open (with): open things, sometimes opening with objects\n" +
                                 "use: use things\n" +
                                 "give (to): give things to people\n" +
@@ -845,7 +845,7 @@ namespace Text_Adventure
                                     inventory.RemoveObject("golden coin");
                                     currentRoom.RemoveObject("shady guy");
                                 }
-                                if(penGiven)
+                                if (penGiven)
                                 {
                                     inventory.RemoveObject("pen");
                                 }
@@ -885,7 +885,7 @@ namespace Text_Adventure
                                 {
                                     inventory.AddObject(currentRoom.RemoveObject("key"));
                                 }
-                                if(pen)
+                                if (pen)
                                 {
                                     inventory.AddObject(currentRoom.RemoveObject(objectName));
                                 }
